@@ -1,0 +1,61 @@
+<div id="burger_image"><img src="assets/img/burger.png" alt="burger" height="100" width="100"></div>
+<h1></h1>
+
+<div id="display_burger">
+
+  {{#if noneaten.length}}
+    <div id="added_burger">
+      <ol>
+        {{#each noneaten}}
+          {{#unless this.devoured}}
+
+            <li>
+              <div id="name_of_burger">
+                {{this.burger_name}}
+              </div>
+              <div id="devour_button">
+                <form action="/{{this.id}}?_method=PUT" method="POST">
+                  <input type="hidden" name="devoured" value="1">
+                  <button type="submit">Devour It!</button>
+                </form>
+              </div>
+            </li>
+
+          {{/unless}}
+        {{/each}}
+      </ol>
+    </div>
+  {{/if}}
+
+  {{#if eaten.length}}
+    <div id="updated_burger">
+        <ol>
+          {{#each eaten}}
+            {{#if this.devoured}}
+            {{#unless this.seed}}
+              <li>
+                {{this.burger_name}}
+
+                <!--form action="/{{this.id}}?_method=PUT" method="POST">
+                  <input type="hidden" name="devoured" value="0">
+                  <button type="submit">Devour It!</button>
+                </form-->
+              </li>
+            {{/unless}}
+            {{/if}}
+          {{/each}}
+        </ol>
+      </div>
+  {{/if}}
+
+</div>
+
+<form class="create-update-form" id="burger_form" action="/" method="POST">
+
+  <div class="form-group">
+    <textarea rows="4" cols="50" id="burger_name" name="burger_name" value="0" form="burger_form"></textarea>
+    <label for="burger_name" class="instructions">Enter a burger you want to eat. Then click 'add burger' to add it to the database!</label>
+  </div>
+
+  <button type="submit">Add Burger</button>
+</form>
