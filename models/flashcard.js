@@ -1,12 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
   var Flashcard = sequelize.define("Flashcard", {
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1, 150]
-      }
-    },
     flash_num: {
       type: DataTypes.INTEGER,
     },
