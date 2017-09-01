@@ -36,18 +36,16 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// I DON'T THINK I NEED THIS STUFF WITH SEQUELIZE
-// Import routes and give the server access to them.
-//var routes = require("./controllers/burgers_controller.js");
-
-//app.use("/", routes);
-
-//app.listen(port);
 
 // Routes
 // =============================================================
-//require("./routes/api-routes.js")(app);
-//require("./routes/html-routes.js")(app);
+// var routes = require("./routes/");
+require("./routes/index_routes.js")(app);
+require("./routes/user_routes.js")(app);
+require("./routes/account_routes.js")(app);
+require("./routes/flashcard_routes.js")(app);
+require("./routes/category_routes.js")(app);
+
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

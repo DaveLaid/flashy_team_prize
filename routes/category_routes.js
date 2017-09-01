@@ -9,17 +9,20 @@ var db = require("../models");
 module.exports = function(app) {
 
   // Create all our routes and set up logic within those routes where required.
+
   app.get("/category", function(req, res) {
-    
+
     db.Set.findAll({
     }).then(function(data) {
       // var flashObj = {data: data};
       // console.log(data);
       res.render("category", data);
+
       // res.sendFile(path.join(__dirname, "../views/index"));
     });
   });
 
+  
   app.get("/category", function(req, res) {
     
     db.Category.findAll({
@@ -35,6 +38,7 @@ module.exports = function(app) {
       email: req.body.email
     }).then(function(data) {
       res.render("category", data);
+
     });
   });
 
