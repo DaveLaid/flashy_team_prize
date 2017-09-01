@@ -13,8 +13,8 @@ module.exports = function(app) {
 	app.get("/account", function(req, res) {
     
 	    db.User.findOne({
-	      name: req.body.name,
-	      email: req.body.email
+	      name: req.params.name,
+	      email: req.params.email
 	    }).then(function(data) {
 	      res.render("index", data);
 	    });
