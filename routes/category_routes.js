@@ -1,12 +1,10 @@
 // Requiring our models
 var db = require("../models");
 
-
 // CATEGORY PAGE NEEDS:
 	// GET SET
 	// GET CATEGORY
 	// GET USER
-
 
 module.exports = function(app) {
 

@@ -14,6 +14,8 @@ CREATE TABLE users
 	PRIMARY KEY (user_id)
 );
 
+SELECT * FROM users;
+
 CREATE TABLE sets
 (
 	set_id int NOT NULL AUTO_INCREMENT,
@@ -21,6 +23,8 @@ CREATE TABLE sets
 	url varchar(255) NOT NULL,
 	PRIMARY KEY (set_id)
 );
+
+SELECT * FROM sets;
 
 CREATE TABLE flashcards
 (
@@ -31,13 +35,19 @@ CREATE TABLE flashcards
 	PRIMARY KEY (flash_id)
 );
 
+SELECT * FROM flashcards;
 
-CREATE TABLE category
+CREATE TABLE categories
 (
 	cat_id int NOT NULL AUTO_INCREMENT,
 	cat_name varchar(255) NOT NULL,
 	PRIMARY KEY (cat_id)
 );
+
+SELECT * FROM categories;
+
+
+
 
 
 CREATE TABLE favorites
