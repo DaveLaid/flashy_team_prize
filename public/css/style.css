@@ -12,3 +12,18 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+.row {
+
+}
+.col {
+  
+}
+
+.input-field {
+  margin-top: 0;
+}
+h5 {
+  text-align: left;
+  padding:left: 15px;
+}

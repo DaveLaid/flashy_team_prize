@@ -1,61 +1,60 @@
-<div id="burger_image"><img src="assets/img/burger.png" alt="burger" height="100" width="100"></div>
-<h1></h1>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
 
-<div id="display_burger">
+    <!-- start finder_create -->
+    <div id="finder_create" class="row center">
+      <br>
 
-  {{#if noneaten.length}}
-    <div id="added_burger">
-      <ol>
-        {{#each noneaten}}
-          {{#unless this.devoured}}
-
-            <li>
-              <div id="name_of_burger">
-                {{this.burger_name}}
-              </div>
-              <div id="devour_button">
-                <form action="/{{this.id}}?_method=PUT" method="POST">
-                  <input type="hidden" name="devoured" value="1">
-                  <button type="submit">Devour It!</button>
-                </form>
-              </div>
-            </li>
-
-          {{/unless}}
-        {{/each}}
-      </ol>
-    </div>
-  {{/if}}
-
-  {{#if eaten.length}}
-    <div id="updated_burger">
-        <ol>
-          {{#each eaten}}
-            {{#if this.devoured}}
-            {{#unless this.seed}}
-              <li>
-                {{this.burger_name}}
-
-                <!--form action="/{{this.id}}?_method=PUT" method="POST">
-                  <input type="hidden" name="devoured" value="0">
-                  <button type="submit">Devour It!</button>
-                </form-->
-              </li>
-            {{/unless}}
-            {{/if}}
-          {{/each}}
-        </ol>
+      <div class="col s12 m6">
+        <a href="" id="download-button" class="left btn-large waves-effect waves-light orange">Create Flashcards!</a>
       </div>
-  {{/if}}
 
+      <div class="col s12 m6">
+
+        <div class="col s2">
+          <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+        </div>
+
+        <form class="col s10">
+          <div class="input-field">
+            <input placeholder="Find Flashcards!" id="first_name" type="text" class="validate">
+          </div>
+            <!-- input type="submit" value="Submit" -->
+        </form>
+
+      </div>
+
+    </div>
+    <!-- end finder_create -->
+
+    <!-- start browse_subjects -->
+    <div id="browse_subjects" class="row center ">
+
+      <h5>Browse Subjects</h5>
+      <div class="divider"></div>
+
+      <div class="section col s12 m4">
+        <div class="card-panel teal">
+          <span class="white-text">{{{ set }}}</span>
+        </div>
+      </div>
+
+      <div class="section col s12 m4">
+        <div class="card-panel teal">
+          <span class="white-text">{{{ set }}}</span>
+        </div>
+      </div>
+
+      <div class="section col s12 m4">
+        <div class="card-panel teal">
+          <span class="white-text">{{{ set }}}</span>
+        </div>
+      </div>
+
+    </div>
+    <!-- end browse_subjects -->
+
+    <br><br>
+
+  </div> <!-- end container -->
 </div>
-
-<form class="create-update-form" id="burger_form" action="/" method="POST">
-
-  <div class="form-group">
-    <textarea rows="4" cols="50" id="burger_name" name="burger_name" value="0" form="burger_form"></textarea>
-    <label for="burger_name" class="instructions">Enter a burger you want to eat. Then click 'add burger' to add it to the database!</label>
-  </div>
-
-  <button type="submit">Add Burger</button>
-</form>
