@@ -34,3 +34,111 @@
   </div>
   <br><br>
 </div>
+
+<!-- from index.handlebars for burger-->
+<div id="burger_image"><img src="assets/img/burger.png" alt="burger" height="100" width="100"></div>
+<h1></h1>
+
+<div id="display_burger">
+
+  {{#if noneaten.length}}
+    <div id="added_burger">
+      <ol>
+        {{#each noneaten}}
+          {{#unless this.devoured}}
+
+            <li>
+              <div id="name_of_burger">
+                {{this.burger_name}}
+              </div>
+              <div id="devour_button">
+                <form action="/{{this.id}}?_method=PUT" method="POST">
+                  <input type="hidden" name="devoured" value="1">
+                  <button type="submit">Devour It!</button>
+                </form>
+              </div>
+            </li>
+
+          {{/unless}}
+        {{/each}}
+      </ol>
+    </div>
+  {{/if}}
+
+  {{#if eaten.length}}
+    <div id="updated_burger">
+        <ol>
+          {{#each eaten}}
+            {{#if this.devoured}}
+            {{#unless this.seed}}
+              <li>
+                {{this.burger_name}}
+
+                <!--form action="/{{this.id}}?_method=PUT" method="POST">
+                  <input type="hidden" name="devoured" value="0">
+                  <button type="submit">Devour It!</button>
+                </form-->
+              </li>
+            {{/unless}}
+            {{/if}}
+          {{/each}}
+        </ol>
+      </div>
+  {{/if}}
+
+</div>
+
+<form class="create-update-form" id="burger_form" action="/" method="POST">
+
+  <div class="form-group">
+    <textarea rows="4" cols="50" id="burger_name" name="burger_name" value="0" form="burger_form"></textarea>
+    <label for="burger_name" class="instructions">Enter a burger you want to eat. Then click 'add burger' to add it to the database!</label>
+  </div>
+
+  <button type="submit">Add Burger</button>
+</form>
+
+<!-- end from index.handlebars for burger-->
+
+<div class="section col s4">
+  <h5>Section 3</h5>
+  <p>Stuff</p>
+</div>
+
+
+<!-- footer library -->
+<footer class="page-footer orange">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Company Bio</h5>
+        <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Settings</h5>
+        <ul>
+          <li><a class="white-text" href="#!">Link 1</a></li>
+          <li><a class="white-text" href="#!">Link 2</a></li>
+          <li><a class="white-text" href="#!">Link 3</a></li>
+          <li><a class="white-text" href="#!">Link 4</a></li>
+        </ul>
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Connect</h5>
+        <ul>
+          <li><a class="white-text" href="#!">Link 1</a></li>
+          <li><a class="white-text" href="#!">Link 2</a></li>
+          <li><a class="white-text" href="#!">Link 3</a></li>
+          <li><a class="white-text" href="#!">Link 4</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    Made by You</a>
+    </div>
+  </div>
+</footer>
