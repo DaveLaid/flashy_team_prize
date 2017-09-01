@@ -60,7 +60,7 @@ module.exports = function(app) {
     
 		db.Set.create({
 		  title: req.body.title,
-		  url: "www.flashy.com/flashcard/" + req.body.id
+		  url: "www.flashy.com/flashcard/" + req.body.set_id
 		}).then(function(data){
 		  // res.render("index", data);
 		  res.redirect("/flashcard");
