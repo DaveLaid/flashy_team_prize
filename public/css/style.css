@@ -1,29 +1,70 @@
 /* Custom Stylesheet */
 /**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
  *
- * Made By MaterializeCSS.com
+ * border: 1px solid #f90606;
+ * border: 1px solid #08bff7;
  */
 
 .icon-block {
   padding: 0 15px;
 }
+
+
+
 .icon-block .material-icons {
 	font-size: inherit;
 }
-
+body {
+  /*background-color: #262836;*/
+}
+.fa {
+  color: #08bff7;
+}
 .row {
-
+  margin: 15px 0 50px 0;
+  padding: .9rem .75rem;
 }
 .col {
-  
+  padding: .9rem .75rem;
 }
-
+.btn, .btn-large {
+  border-radius: 0;
+  text-decoration: none;
+  color: #fff;
+  background-color: #08bff7;
+  box-shadow: none;
+}
+.btn:hover, .btn:active, .btn:focus, .btn-large:hover, .btn-large:active, .btn-large:focus {
+  text-decoration: none;
+  color: #fff;
+  background-color: #08bff7;
+  box-shadow: 0 2px 2px 0 rgba(8,191,247,0.3), 0 1px 5px 0 rgba(8,191,247,0.12), 0 3px 1px -2px rgba(8,191,247,0.2);
+}
+/* label focus color */
+ .input-field input:focus + label {
+   color: #08bff7 !important;
+ }
+ /* label underline focus color */
+ .row .input-field input:focus {
+   border-bottom: 1px solid #08bff7 !important;
+   box-shadow: 0 1px 0 0 #08bff7 !important
+ }
+input:not([type]):hover, input:not([type]):active, input:not([type]):focus, input[type=text]:not(.browser-default):hover, input[type=text]:not(.browser-default):active, input[type=text]:not(.browser-default):focus {
+  border-bottom: 1px solid #08bff7;
+}
+nav {
+  background-color: #f90606; /*#d50000;*/
+  box-shadow: 0 2px 2px 0 rgba(8,191,247,0.3), 0 1px 5px 0 rgba(8,191,247,0.12), 0 3px 1px -2px rgba(8,191,247,0.2);
+}
 .input-field {
   margin-top: 0;
 }
 h5 {
   text-align: left;
   padding:left: 15px;
+}
+.divider {
+  height: 1px;
+  overflow: hidden;
+  background-color: #08bff7;
 }
