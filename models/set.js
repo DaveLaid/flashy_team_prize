@@ -15,5 +15,31 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+
+  Set.associate = function(models) {
+    Set.belongsTo(models.Category, {
+      //Associates a Set to the Category is belongs in.
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
+  Set.associate = function(models) {
+    //Associates a Set to the User who created it.
+    Set.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
+  Set.associate = function(models) {
+    //When a Set is deleted, also delete any associated Flashcards.
+    Set.hasMany(models.Flashcard, {
+      onDelete: "cascade"
+    });
+  };
+
   return Set;
 };

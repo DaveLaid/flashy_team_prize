@@ -40,16 +40,17 @@ app.set("view engine", "handlebars");
 // Routes
 // =============================================================
 // var routes = require("./routes/");
+require("./routes/html_routes.js")(app);
 require("./routes/index_routes.js")(app);
-require("./routes/user_routes.js")(app);
-require("./routes/account_routes.js")(app);
-require("./routes/flashcard_routes.js")(app);
-require("./routes/category_routes.js")(app);
+// require("./routes/user_routes.js")(app);
+// require("./routes/account_routes.js")(app);
+// require("./routes/flashcard_routes.js")(app);
+// require("./routes/category_routes.js")(app);
 
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
   	// CODE BELOW WILL REQUIRE INITIAL DATA.  PLEASE REMOVE AFTER 1st DEPLOYMENT TO HEROKU.
   	// require("./data/data.js")(app);
@@ -57,3 +58,6 @@ db.sequelize.sync({ force: true }).then(function() {
     console.log("App listening on PORT " + PORT);
   });
 });
+
+// REMOVING the below from inside "sync()" so that I don't have to re-add content each time I kill the server.
+// { force: true }

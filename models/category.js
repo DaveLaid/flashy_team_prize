@@ -5,5 +5,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
+
+
+  Category.associate = function(models) {
+    //When a Set is deleted, also delete any associated Flashcards.
+    Category.hasMany(models.Set, {
+      onDelete: "cascade"
+    });
+  };
+
   return Category;
 };

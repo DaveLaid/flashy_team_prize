@@ -13,31 +13,38 @@ var db = require("../models");
 module.exports = function(app) {
 
   // Create all our routes and set up logic within those routes where required.
-  app.get("/", function(req, res) {
-    
-    db.Set.findAll({
-    }).then(function(data) {
-      // var flashObj = {data: data};
-      // console.log(data);
-      res.render("index", data);
-      // res.sendFile(path.join(__dirname, "../views/index"));
-    });
-  });
+  
 
   app.get("/", function(req, res) {
     
     db.Category.findAll({
     }).then(function(data) {
+      console.log("CATEGORY data: " + data);
+      console.log("CATEGORY name: " + data[0].cat_name);
       res.render("index", data);
     });
   });
 
-  app.get("/", function(req, res) {
+
+  // app.get("/:id", function(req, res) {
+    
+  //   db.Set.findAll({
+  //   }).then(function(data) {
+  //     console.log("SET data: " + data);
+  //     console.log("SET title: " + data[0].title);
+  //     console.log("SET url: " + data[0].url);
+  //     res.render("index", data);
+  //   });
+  // });
+
+
+  app.get("/:user_id", function(req, res) {
     
     db.User.findOne({
       displayname: req.params.displayname,
       username: req.params.username
     }).then(function(data) {
+      console.log("USER data: " + data);
       res.render("index", data);
     });
   });
