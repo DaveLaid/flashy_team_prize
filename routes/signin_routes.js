@@ -12,6 +12,7 @@ module.exports = function(app) {
     db.User.findOne({
       displayname: req.params.displayname,
       username: req.params.username
+
     }).then(function(data) {
       res.render("user", data);
     });
@@ -32,3 +33,4 @@ module.exports = function(app) {
   });
 
 };
+
