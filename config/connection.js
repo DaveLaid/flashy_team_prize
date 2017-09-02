@@ -10,7 +10,7 @@ else {
   host: "localhost",
   user: "root",
   password: "david",
-  database: "flashy_db"
+  database: "flashcards_db"
   });
 }
 
