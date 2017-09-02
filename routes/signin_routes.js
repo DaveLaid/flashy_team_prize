@@ -1,14 +1,14 @@
 // Requiring our models
 var db = require("../models");
 
-// USER PAGE NEEDS:  
+// SIGNIN PAGE NEEDS:
 	//GET USER
 	//POST USER
 
 module.exports = function(app) {
 
   app.get("/user", function(req, res) {
-    
+
     db.User.findOne({
       displayname: req.params.displayname,
       username: req.params.username

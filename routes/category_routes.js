@@ -34,8 +34,8 @@ module.exports = function(app) {
   app.get("/category", function(req, res) {
     
     db.User.findOne({
-      name: req.body.name,
-      email: req.body.email
+      displayname: req.params.displayname,
+      username: req.params.username
     }).then(function(data) {
       res.render("category", data);
 
