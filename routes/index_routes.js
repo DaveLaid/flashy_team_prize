@@ -35,8 +35,8 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     
     db.User.findOne({
-      name: req.params.name,
-      email: req.params.email
+      displayname: req.params.displayname,
+      username: req.params.username
     }).then(function(data) {
       res.render("index", data);
     });

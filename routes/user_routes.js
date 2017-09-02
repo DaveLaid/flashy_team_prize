@@ -10,8 +10,8 @@ module.exports = function(app) {
   app.get("/user", function(req, res) {
     
     db.User.findOne({
-      name: req.params.name,
-      email: req.params.email
+      displayname: req.params.displayname,
+      username: req.params.username
     }).then(function(data) {
       res.render("user", data);
     });
@@ -20,8 +20,8 @@ module.exports = function(app) {
 
   app.post("/user", function(req, res) {
     db.User.create({
-      name: req.body.name,
-      email: req.body.email,
+      displayname: req.body.displayname,
+      username: req.body.username,
       password: req.body.password
     }).then(function(data){
       // res.render("index", data);

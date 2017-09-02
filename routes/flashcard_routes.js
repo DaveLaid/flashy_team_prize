@@ -15,8 +15,8 @@ module.exports = function(app) {
 	app.get("/flashcard", function(req, res) {
     
 	    db.User.findOne({
-	      name: req.params.name,
-	      email: req.params.email
+	      displayname: req.params.displayname,
+	      username: req.params.username
 	    }).then(function(data) {
 	      res.render("flashcard", data);
 	    });
@@ -24,13 +24,20 @@ module.exports = function(app) {
 
 
   	app.get("/flashcard", function(req, res) {
-    
 	    db.Set.findAll({
 	    }).then(function(data) {
-	      // var flashObj = {data: data};
-	      // console.log(data);
 	      res.render("flashcard", data);
-	      // res.sendFile(path.join(__dirname, "../views/index"));
+	    });
+  	});
+
+  	app.get("/flashcard/:id", function(req, res) {
+	    db.Set.findOne({
+	    	where: {
+	    		set_id: req.params.set_id
+	    	}
+	    }).then(function(data) {
+	      res.json(data);
+	      // res.render("flashcard", data);
 	    });
   	});
 
