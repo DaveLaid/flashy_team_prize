@@ -18,5 +18,17 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+
+
+  Flashcard.associate = function(models) {
+    //Associates a Set to the User who created it.
+    Flashcard.belongsTo(models.Set, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
+
   return Flashcard;
 };
