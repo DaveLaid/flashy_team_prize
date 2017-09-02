@@ -51,6 +51,9 @@ require("./routes/category_routes.js")(app);
 // =============================================================
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
+  	// CODE BELOW WILL REQUIRE INITIAL DATA.  PLEASE REMOVE AFTER 1st DEPLOYMENT TO HEROKU.
+  	// require("./data/data.js")(app);
+
     console.log("App listening on PORT " + PORT);
   });
 });
