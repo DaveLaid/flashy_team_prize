@@ -24,6 +24,23 @@ body {
   margin: 15px 0 50px 0;
   padding: .9rem .75rem;
 }
+.modal-row {
+  margin: 0;
+  padding: 0;
+}
+.modal-content h4 {
+    color: #08bff7;
+    margin-bottom: 1rem;
+}
+.fa-facebook-square {
+  color: #3b5998;
+}
+.fa-twitter-square {
+  color: #0084b4;
+}
+.fa-google-plus-square {
+  color: #d34836;
+}
 .col {
   padding: .9rem .75rem;
 }
