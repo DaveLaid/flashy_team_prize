@@ -32,3 +32,8 @@ module.exports = function(app) {
   });
 
 };
+
+
+
+//DO I NEED THIS????
+// db["User"].hasMany(db["Set"], { foreignKey: 'user_id'});

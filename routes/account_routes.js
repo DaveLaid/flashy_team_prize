@@ -25,10 +25,8 @@ module.exports = function(app) {
     
 	    db.Set.findAll({
 	    }).then(function(data) {
-	      // var flashObj = {data: data};
 	      // console.log(data);
 	      res.render("account", data);
-	      // res.sendFile(path.join(__dirname, "../views/index"));
 	    });
   	});
 
