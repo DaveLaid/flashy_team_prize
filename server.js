@@ -40,7 +40,7 @@ app.set("view engine", "handlebars");
 // Routes
 // =============================================================
 // var routes = require("./routes/");
-require("./routes/html_routes.js")(app);
+// require("./routes/html_routes.js")(app);
 require("./routes/index_routes.js")(app);
 // require("./routes/user_routes.js")(app);
 // require("./routes/account_routes.js")(app);
