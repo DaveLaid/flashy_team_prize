@@ -6,13 +6,13 @@
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
 		<!-- Font Awesome Reference -->
-    <script src="https://use.fontawesome.com/6807919ae4.js"></script>
+		<link type="text/css" rel="stylesheet" href="css/font-awesome.min.css"  media="screen,projection"/>
 
     <!-- fonts.google.com Reference -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 
 		<link rel="stylesheet" href="/css/style.css" type="text/css" />
-		
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 		<link rel="icon" href="images/favicon.gif" type="image/gif" sizes="16x16">
@@ -22,28 +22,28 @@
 	<body>
     <nav class="" role="navigation">
       <div class="nav-wrapper container">
-				<a id="logo-container" href="#" class="brand-logo"><img src="images/flashy_logo.png" alt="logo" height="63" width="150"></a>
+				<a id="logo-container" href="/" class="brand-logo"><img src="images/flashy_logo.png" alt="logo" height="63" width="150"></a>
         <ul class="right hide-on-med-and-down">
-          <li><a id="sign-up" class="modal-trigger" href="#modal1">Sign Up</a></li>
-					<li><a href="/login">LOGIN</a></li>
+          <li><a id="sign-up" class="modal-trigger" href="#modal-sign-up">Sign Up</a></li>
+					<li><a class="modal-trigger" href="#modal-login">LOGIN</a></li>
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
-          <li><a href="#modal1">Sign Up</a></li>
-					<li><a href="/login">LOGIN</a></li>
+          <li><a class="modal-trigger" href="#modal-sign-up">Sign Up</a></li>
+					<li><a class="modal-trigger" href="#modal-login">LOGIN</a></li>
         </ul>
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></a>
       </div>
     </nav>
 
 		{{{ body }}}
 
-		<!-- Modal Structure -->
-		<div id="modal1" class="modal">
+		<!-- Modal sign-up Structure -->
+		<div id="modal-sign-up" class="modal">
 		  <div class="modal-content">
 		    <h4>Sign Up!</h4>
-				<!--container-->
 					<!--form-->
+					<form class="col s12">
 					<div class="row modal-row">
 						<div class="input-field col s6">
 		          <input id="user_name" type="text" class="validate">
@@ -83,8 +83,49 @@
 						<div class="input-field col s6"></div>
 					</div>
 
+				</form> <!--end form-->
 		  	</div> <!-- end modal content -->
-		</div>
+		</div> <!-- end sign-up modal -->
+
+		<!-- Modal login Structure -->
+		<div id="modal-login" class="modal">
+		  <div class="modal-content">
+		    <h4>Log In!</h4>
+		      <!--form-->
+		      <form class="col s12">
+		        <div class="row modal-row">
+		          <div class="input-field col s6">
+		            <input id="user_name" type="text" class="validate">
+		            <label for="user_name">User Name</label>
+		          </div>
+		          <div class="col s6">
+		            <p>Log in with Facebook, Twitter or Google!</p>
+		          </div>
+		        </div>
+
+		        <div class="row modal-row">
+		          <div class="input-field col s6">
+		            <input id="password" type="password" class="validate">
+		            <label for="password">Password</label>
+		          </div>
+		          <div class="col s6">
+		            <div class="col s4"><a href="#" target="_blank"><i class="fa fa-facebook-square fa-4x" aria-hidden="true"></i></a></div>
+		            <div class="col s4"><a href="#" target="_blank"><i class="fa fa-twitter-square fa-4x" aria-hidden="true"></i></a></div>
+		            <div class="col s4"><a href="#" target="_blank"><i class="fa fa-google-plus-square fa-4x" aria-hidden="true"></i></a></div>
+		          </div>
+		        </div>
+
+		        <div class="row modal-row">
+		          <div class="input-field col s6">
+		            <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+		          </div>
+		          <div class="input-field col s6"></div>
+		        </div>
+
+		      </form> <!--end form-->
+		    </div> <!-- end modal content -->
+		</div> <!-- end login modal -->
+
 
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -92,12 +133,15 @@
     <script src="js/init.js"></script>
 
 		<script type="text/javascript">
-		$("#sign-up").on("click", function(event) {
+		//need to initialize all modals!!!
+		$('.modal').modal();
 
-				//need to initialize all modals!!!
-				$('.modal').modal();
-				$('#modal1').modal('open');
-
+		//on click events for the modals
+		$("#modal-sign-up").on("click", function(event) {
+				$('#modal-sign-up').modal('open');
+		});
+		$("#modal-login").on("click", function(event) {
+				$('#modal-login').modal('open');
 		});
 		</script>
 

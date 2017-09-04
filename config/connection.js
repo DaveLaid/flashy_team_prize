@@ -9,7 +9,7 @@ else {
   connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "david",
+  password: "",
   database: "flashcards_db"
   });
 }
