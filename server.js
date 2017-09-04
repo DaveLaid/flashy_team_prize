@@ -46,6 +46,7 @@ require("./routes/index_routes.js")(app);
 // require("./routes/account_routes.js")(app);
 // require("./routes/flashcard_routes.js")(app);
 // require("./routes/category_routes.js")(app);
+require("./routes/create_routes.js")(app);
 
 
 // Syncing our sequelize models and then starting our Express app

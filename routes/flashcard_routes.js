@@ -1,8 +1,8 @@
 // Requiring our models
 var db = require("../models");
 
-// FLASHCARD PAGE NEEDS: 
-	// GET USER 
+// FLASHCARD PAGE NEEDS:
+	// GET USER
 	// GET SET
 	// GET CATEGORY
 	// POST CATEGORY
@@ -13,7 +13,7 @@ var db = require("../models");
 module.exports = function(app) {
 
 	app.get("/flashcard", function(req, res) {
-    
+
 	    db.User.findOne({
 	      displayname: req.params.displayname,
 	      username: req.params.username
@@ -51,20 +51,20 @@ module.exports = function(app) {
 	});
 
 
-	app.post("/flashcard", function(req, res) {
-    
-		db.Category.create({
-		  cat_name: req.body.cat_name
-		}).then(function(data){
-		  // res.render("index", data);
-		  res.redirect("/flashcard");
-		  // return res.json(data);
-		});
-	});
+	// app.post("/flashcard", function(req, res) {
+  //
+	// 	db.Category.create({
+	// 	  cat_name: req.body.cat_name
+	// 	}).then(function(data){
+	// 	  // res.render("index", data);
+	// 	  res.redirect("/flashcard");
+	// 	  // return res.json(data);
+	// 	});
+	// });
 
 
 	app.post("/flashcard", function(req, res) {
-    
+
 		db.Set.create({
 		  title: req.body.title,
 		  url: "www.flashy.com/flashcard/" + req.body.set_id
@@ -77,7 +77,7 @@ module.exports = function(app) {
 
 
 	app.post("/flashcard", function(req, res) {
-    
+
 		db.Flashcard.create({
 		  flash_num: req.body.title,
 		  question: req.body.question,
@@ -92,5 +92,3 @@ module.exports = function(app) {
 
 
 };
-
-
