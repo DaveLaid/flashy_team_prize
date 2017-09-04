@@ -2,28 +2,17 @@
 var db = require("../models");
 
 
-// HOME PAGE NEEDS:
-  // GET SET
-  // GET CATEGORY
-  // GET USER
-  // links to user page, category page, set page.
-
+// CREATE FLASHCARD PAGE NEEDS:
+  //
 
 // Routes =============================================================
 module.exports = function(app) {
 
   // Create all our routes and set up logic within those routes where required.
-
-  app.get("/", function(req, res) {
-
-    db.Category.findAll({
-    }).then(function(data) {
-      //console.log("CATEGORY data: " + data);
-      //console.log("CATEGORY name: " + data[0].cat_name);
-      res.render("index", data);
-    });
-
-  });
+//  app.get("/create", function(req, res) {
+//      console.log("here in create route");
+//      res.render("create.handlebars");
+//  });
 
   app.get("/create", function(req, res) {
 
@@ -32,7 +21,6 @@ module.exports = function(app) {
       console.log("here in create route");
       res.render("create.handlebars", data);
     });
-    
   });
   // app.get("/:id", function(req, res) {
 
@@ -46,22 +34,18 @@ module.exports = function(app) {
   // });
 
 
-  app.get("/:user_id", function(req, res) {
+  // app.get("/:user_id", function(req, res) {
+  //
+  //   db.User.findOne({
+  //     displayname: req.params.displayname,
+  //     username: req.params.username
+  //   }).then(function(data) {
+  //     console.log("USER data: " + data);
+  //     res.render("index", data);
+  //   });
+  // });
 
-    db.User.findOne({
-      displayname: req.params.displayname,
-      username: req.params.username
-    }).then(function(data) {
-      console.log("USER data: " + data);
-      res.render("index", data);
-    });
-  });
 
-  app.get("/create", function(req, res) {
-      console.log("here in create route 2");
-      res.render("create.handlebars");
-
-  });
   // app.post("/", function(req, res) {
   //   db.Burger.create({
   //     burger_name: req.body.burger_name,

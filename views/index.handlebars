@@ -5,11 +5,13 @@
     <div id="finder_create" class="row center">
       <br>
 
+      <!-- create flashcards -->
       <div class="col s12 m6">
-        <a href="" id="download-button" class="left btn-large">Create Flashcards!</a>
+        <a href="/create" id="create-button" class="left btn-large">Create Flashcards!</a>
       </div>
 
-      <div class="col s12 m6">
+      <!-- search flashcards -->
+      <div class="col s12 m6  find-flashcards">
 
         <div class="col s2" style="height: 3rem;line-height:4rem;">
           <i class="fa fa-search fa-2x" aria-hidden="true"></i>
@@ -27,6 +29,40 @@
     </div>
     <!-- end finder_create -->
 
+    <!-- start my_cards -->
+    <div id="my_cards" class="row center">
+
+      <div class="divider"></div>
+      <h5>My Cards!</h5>
+
+      <br>
+
+      <div class="section col s12 m4">
+        <div href="#play-flashcards" class="modal-trigger card-panel teal">
+          <span class="white-text" name="category">{{ category }}</span>
+        </div>
+      </div>
+
+    </div>
+    <!-- end my_cards -->
+
+    <!-- start my_favorites -->
+    <div id="my_cards" class="row center">
+
+      <div class="divider"></div>
+      <h5>My Favorites!</h5>
+
+      <br>
+
+      <div class="section col s12 m4">
+        <div href="#play-flashcards" class="modal-trigger card-panel teal">
+          <span class="white-text" name="category">{{ category }}</span>
+        </div>
+      </div>
+
+    </div>
+    <!-- end my_favorites -->
+
     <!-- start browse_subjects -->
     <div id="browse_subjects" class="row center ">
 
@@ -36,42 +72,41 @@
       <br>
 
       <div class="section col s12 m4">
-        <div class="card-panel teal">
+        <div href="#play-flashcards" class="modal-trigger card-panel teal">
           <span class="white-text" name="category">Biology</span>
         </div>
       </div>
 
       <div class="section col s12 m4">
-        <div class="card-panel teal">
+        <div href="#play-flashcards" class="modal-trigger card-panel teal">
           <span class="white-text">Civics</span>
         </div>
       </div>
 
       <div class="section col s12 m4">
-        <div class="card-panel teal">
+        <div href="#play-flashcards" class="modal-trigger card-panel teal">
           <span class="white-text">Literature</span>
         </div>
       </div>
 
 
        <div class="section col s12 m4">
-        <div class="card-panel teal">
+        <div href="#play-flashcards" class="modal-trigger card-panel teal">
           <span class="white-text">Programming</span>
         </div>
       </div>
 
      <div class="section col s12 m4">
-        <div class="card-panel teal">
+        <div href="#play-flashcards" class="modal-trigger card-panel teal">
           <span class="white-text">History</span>
         </div>
       </div>
 
      <div class="section col s12 m4">
-        <div class="card-panel teal">
+        <div href="#play-flashcards" class="modal-trigger card-panel teal">
           <span class="white-text">Math</span>
         </div>
       </div>
-
 
     </div>
     <!-- end browse_subjects -->
@@ -80,3 +115,59 @@
 
   </div> <!-- end container -->
 </div>
+
+<!-- Modal Flashcard Deck Structure -->
+<div id="play-flashcards" class="modal">
+  <div class="modal-content">
+
+    <h5>Flashcard Title</h5>
+    <p>Author</p>
+
+    <div class="row modal-row view-card">
+      <div class="col s6 view-card-option" href="/shuffle"><p>SHUFFLE</p></div>
+
+      <div class="col s6 view-card-option" href="/both-sides"><p>SEE BOTH SIDES</p></div>
+    </div>
+
+    <div class="row modal-row content-card">
+      <!-- front / back / both sides of card appear here -->
+    </div>
+
+    <div class="row modal-row controls-card">
+      <div class="col s12 flip"><a href="#" value="flip-card" class="btn">FLIP</a></div>
+    </div>
+    <div class="row modal-row">
+      <div class="col s4 previous"><a href="#" value="previous-card" class="btn">PREVIOUS</a></div>
+      <div class="col s4 arrows"><i class="fa fa-arrows fa-4x" aria-hidden="true"></i></div>
+      <div class="col s4 next"><a href="#" value="next-card" class="btn">NEXT</a></div>
+    </div>
+    <div class="row modal-row">
+      <div class="col s12 flip"><a href="#" value="flip-card" class="btn">FLIP</a></div>
+    </div>
+
+    <div class="row modal-row share-card">
+      <button class="btn waves-effect waves-light" type="submit" name="share-card">Share Flashcards</button>
+      <a href="#" value="share-card" class="waves-effect waves-light btn">Share Flashcards!</a>
+    </div>
+
+  </div> <!-- end modal content -->
+</div> <!-- end play-flashcards modal -->
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script src="js/init.js"></script>
+
+<script type="text/javascript">
+  //need to initialize all modals!!!
+  $('.modal').modal();
+
+  //on click events for the modals
+  $("#modal-create-flashcards").on("click", function(event) {
+      $('#modal-create-flashcards').modal('open');
+  });
+  $("#play-flashcards").on("click", function(event) {
+      $('#play-flashcards').modal('open');
+  });
+
+</script>
