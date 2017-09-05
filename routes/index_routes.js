@@ -32,7 +32,7 @@ module.exports = function(app) {
       console.log("here in create route");
       res.render("create.handlebars", data);
     });
-    
+
   });
   // app.get("/:id", function(req, res) {
 
@@ -45,6 +45,24 @@ module.exports = function(app) {
   //   });
   // });
 
+  app.post("/login", function(req, res) {
+
+    db.User.findOne({
+      username: req.params.username,
+      password: req.params.password
+    }).then(function(data) {
+      db.Set.findAll({
+        UserId: data.id
+      }).then(function(data2) {
+        var set_of_flashcards = [];
+        for(i=0;i<data2.length;i++) {
+        console.log("USER data: " + data2[i].title);
+        set_of_flashcards.push(data2[i].title);
+        }
+        res.json(set_of_flashcards);
+      });
+    });
+  });
 
   app.get("/:user_id", function(req, res) {
 

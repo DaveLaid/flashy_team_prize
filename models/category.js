@@ -13,6 +13,13 @@ module.exports = function(sequelize, DataTypes) {
       onDelete: "cascade"
     });
   };
+  // force: true will drop the table if it already exists
+  Category.sync({force: false}).then(() => {
+    // Table created
+    return Category.create({
+    cat_name: 'biology'
+    });
+  });
 
   return Category;
 };

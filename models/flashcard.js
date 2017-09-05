@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
 
 
   Flashcard.associate = function(models) {
-    //Associates a Set to the User who created it.
+    //Associates a Flashcard to the Set it belongs to.
     Flashcard.belongsTo(models.Set, {
       foreignKey: {
         allowNull: false
@@ -29,6 +29,15 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
-
+  // force: true will drop the table if it already exists
+  Flashcard.sync({force: false}).then(() => {
+    // Table created
+    return Flashcard.create({
+    flash_num: 1,
+    question: 'what is a hamster?',
+    answer: 'a mammal',
+    SetId: 1
+    });
+  });
   return Flashcard;
 };

@@ -29,6 +29,14 @@ module.exports = function(sequelize, DataTypes) {
       onDelete: "cascade"
     });
   };
-
+  // force: true will drop the table if it already exists
+  User.sync({force: false}).then(() => {
+    // Table created
+    return User.create({
+      displayname: 'cinnamon',
+      username: 'cinnamon@gmail.com',
+      password: '123'
+    });
+  });
   return User;
 };

@@ -13,7 +13,22 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1, 255]
       }
-    }
+    }//,
+    // It is possible to create foreign keys:
+    // creator_id: {
+    //   type: sequelize.INTEGER,
+    //
+    //   references: {
+    //     // This is a reference to another model
+    //     model: Users,
+    //
+    //     // This is the column name of the referenced model
+    //     key: 'id',
+    //
+    //     // This declares when to check the foreign key constraint. PostgreSQL only.
+    //     deferrable: sequelize.Deferrable.INITIALLY_IMMEDIATE
+    //   }
+    // }
   });
 
   Set.associate = function(models) {
@@ -40,6 +55,15 @@ module.exports = function(sequelize, DataTypes) {
       onDelete: "cascade"
     });
   };
-
+  // force: true will drop the table if it already exists
+  Set.sync({force: false}).then(() => {
+    // Table created
+    return Set.create({
+    title: 'biology 101',
+    url: 'www.google.com',
+    CategoryId: 1,
+    UserId: 1
+    });
+  });
   return Set;
 };

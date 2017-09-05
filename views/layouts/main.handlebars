@@ -77,7 +77,7 @@
 
 					<div class="row modal-row">
 						<div class="input-field col s6">
-							<button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+							<button id="submit-sign-up" class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
 						</div>
 						<div class="input-field col s6"></div>
 					</div>
@@ -116,7 +116,7 @@
 
 		        <div class="row modal-row">
 		          <div class="input-field col s6">
-		            <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+		            <button id="submit-login" class="btn waves-effect waves-light" input type="submit" name="action">Submit</button>
 		          </div>
 		          <div class="input-field col s6"></div>
 		        </div>
@@ -134,15 +134,52 @@
 		<script type="text/javascript">
 		//need to initialize all modals!!!
 		$('.modal').modal();
+    console.log("ANita is the best, I love her 1");
+    </script>
 
-		//on click events for the modals
-		$("#modal-sign-up").on("click", function(event) {
-				$('#modal-sign-up').modal('open');
+		<script type="text/javascript">
+		console.log("ANita is the best, I love her 3 ");
+		// Capture the form inputs
+		console.log("aa")
+
+		$("#submit-login").on("click", function(event) {
+		  //event.preventDefault();
+		  console.log("ANita is the best, I love her 2");
+		  // Form validation
+		  function validateForm() {
+		    var isValid = true;
+		    $(".form-control").each(function() {
+		      if ($(this).val() === "") {
+		        isValid = false;
+		      }
+		    });
+		    return isValid;
+		  }
+
+		  // If all required fields are filled
+		  if (validateForm()) {
+		    // Create an object for the user"s data
+		    var userData = {
+		      email: "cinnamon",
+		      password: "123"
+		    };
+
+		    // AJAX post the data to the friends API.
+		    $.post("/login", userData, function(data) {
+
+		      console.log(data);
+		      // Show the modal with the best match
+		      //$("#signup-modal").modal("toggle");
+
+		    });
+		  } else {
+		    alert("Please fill out all fields before submitting!");
+		  }
 		});
-		$("#modal-login").on("click", function(event) {
-				$('#modal-login').modal('open');
-		});
+
 		</script>
 
+
 	</body>
+
 </html>
