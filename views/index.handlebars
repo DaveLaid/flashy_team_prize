@@ -63,6 +63,9 @@
     </div>
     <!-- end my_favorites -->
 
+
+
+
     <!-- start browse_subjects -->
     <div id="browse_subjects" class="row center ">
 
@@ -75,7 +78,7 @@
       <div class="section col s12 m4">
         <div href="#display-sets" class="modal-trigger card-panel teal">
         
-          <span class="white-text"><a href="/sets">{{ this.cat_name }}</a></span>
+          <span id="{{this.cat_name}}" value="{{this.cat_name}}" class="white-text">{{ this.cat_name }}</span>
         
         </div>
       </div>
@@ -86,6 +89,10 @@
 
     <br><br>
 
+
+
+
+
   </div> <!-- end container -->
 </div>
 
@@ -94,14 +101,25 @@
 <div id="display-sets" class="modal">
   <div class="modal-content">
 
-    <h5>"(Category Name)" Sets</h5>
-    
-
-    <div class="row modal-row view-set" >
-    {{#each sets}}
-      <div class="col s12 set"><a href="#play-flashcards" value="view-set" class="btn">{{ this.title }}</a></div>
-      <p>Created by "(User Name)"</p>
+    {{#each cats}}
+        {{#if this.cat_name}}
+            <h5>{{ this.cat_name }} - Sets</h5>
+        {{/if}}
     {{/each}}
+    
+    
+    <div class="row modal-row view-set" >
+    <!-- allCategories.cats[0].Sets[0].title -->
+    
+      {{#each cats}}
+        {{#if this.cat_name}}
+          {{#each this.Sets}}
+        <div class="col s12 set"><a href="#play-flashcards" value="view-set" class="btn modal-trigger card-panel" >{{ title }}</a></div>
+        <p>Created by <a href="#">(User Name)</a></p>
+          {{/each}}
+        {{/if}}
+      {{/each}}
+  
     </div>
     
 
