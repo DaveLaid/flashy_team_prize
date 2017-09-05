@@ -4,6 +4,18 @@ CREATE DATABASE flashcards_db;
 
 USE flashcards_db;
 
+SELECT * FROM users;
+SELECT * FROM sets;
+SELECT * FROM flashcards;
+SELECT * FROM categories;
+
+
+
+DROP TABLE users;
+DROP TABLE sets;
+DROP TABLE flashcards;
+DROP TABLE categories;
+
 
 CREATE TABLE users
 (
@@ -14,7 +26,7 @@ CREATE TABLE users
 	PRIMARY KEY (user_id)
 );
 
-SELECT * FROM users;
+
 
 
 CREATE TABLE sets
@@ -25,7 +37,6 @@ CREATE TABLE sets
 	PRIMARY KEY (set_id)
 );
 
-SELECT * FROM sets;
 
 
 CREATE TABLE flashcards
@@ -37,7 +48,6 @@ CREATE TABLE flashcards
 	PRIMARY KEY (flash_id)
 );
 
-SELECT * FROM flashcards;
 
 
 CREATE TABLE categories
@@ -47,7 +57,7 @@ CREATE TABLE categories
 	PRIMARY KEY (cat_id)
 );
 
-SELECT * FROM categories;
+
 
 
 

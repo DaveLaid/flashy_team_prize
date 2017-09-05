@@ -39,7 +39,7 @@
 
       <div class="section col s12 m4">
         <div href="#play-flashcards" class="modal-trigger card-panel teal">
-          <span class="white-text" name="category">{{ category }}</span>
+          <span class="white-text" name="myCards">My Set 1</span>
         </div>
       </div>
 
@@ -56,7 +56,7 @@
 
       <div class="section col s12 m4">
         <div href="#play-flashcards" class="modal-trigger card-panel teal">
-          <span class="white-text" name="category">{{ category }}</span>
+          <span class="white-text" name="favorite">My Favorite 1</span>
         </div>
       </div>
 
@@ -71,42 +71,15 @@
 
       <br>
 
+      {{#each cats}}
       <div class="section col s12 m4">
-        <div href="#play-flashcards" class="modal-trigger card-panel teal">
-          <span class="white-text" name="category">Biology</span>
+        <div href="#display-sets" class="modal-trigger card-panel teal">
+        
+          <span class="white-text"><a href="/sets">{{ this.cat_name }}</a></span>
+        
         </div>
       </div>
-
-      <div class="section col s12 m4">
-        <div href="#play-flashcards" class="modal-trigger card-panel teal">
-          <span class="white-text">Civics</span>
-        </div>
-      </div>
-
-      <div class="section col s12 m4">
-        <div href="#play-flashcards" class="modal-trigger card-panel teal">
-          <span class="white-text">Literature</span>
-        </div>
-      </div>
-
-
-       <div class="section col s12 m4">
-        <div href="#play-flashcards" class="modal-trigger card-panel teal">
-          <span class="white-text">Programming</span>
-        </div>
-      </div>
-
-     <div class="section col s12 m4">
-        <div href="#play-flashcards" class="modal-trigger card-panel teal">
-          <span class="white-text">History</span>
-        </div>
-      </div>
-
-     <div class="section col s12 m4">
-        <div href="#play-flashcards" class="modal-trigger card-panel teal">
-          <span class="white-text">Math</span>
-        </div>
-      </div>
+      {{/each}}
 
     </div>
     <!-- end browse_subjects -->
@@ -115,6 +88,28 @@
 
   </div> <!-- end container -->
 </div>
+
+
+
+<div id="display-sets" class="modal">
+  <div class="modal-content">
+
+    <h5>"(Category Name)" Sets</h5>
+    
+
+    <div class="row modal-row view-set" >
+    {{#each sets}}
+      <div class="col s12 set"><a href="#play-flashcards" value="view-set" class="btn">{{ this.title }}</a></div>
+      <p>Created by "(User Name)"</p>
+    {{/each}}
+    </div>
+    
+
+  </div> <!-- end modal content -->
+</div> <!-- end display-sets modal -->
+
+
+
 
 <!-- Modal Flashcard Deck Structure -->
 <div id="play-flashcards" class="modal">
