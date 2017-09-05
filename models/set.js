@@ -10,6 +10,9 @@ module.exports = function(sequelize, DataTypes) {
     url: {
       type: DataTypes.STRING,
       allowNull: false,
+      set: function(val){
+        "www.flashy.com/flashcards/" + this.setDataValue('url', val.toLowerCase());
+      },
       validate: {
         len: [1, 255]
       }
@@ -23,23 +26,28 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
-  };
-
-  Set.associate = function(models) {
+    
     //Associates a Set to the User who created it.
     Set.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
     });
-  };
 
-  Set.associate = function(models) {
     //When a Set is deleted, also delete any associated Flashcards.
     Set.hasMany(models.Flashcard, {
       onDelete: "cascade"
     });
+
   };
+
+  // Set.associate = function(models) {
+    
+  // };
+
+  // Set.associate = function(models) {
+    
+  // };
 
 
   // // force: true will drop the table if it already exists

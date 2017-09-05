@@ -14,32 +14,60 @@ module.exports = function(app) {
 
   // Create all our routes and set up logic within those routes where required.
 
+  // var homeFunk = function (req, res) {
+  //   res.render("index", {allCategories, allSets});
+  // }
+
   app.get("/", function(req, res) {
+    // var query = {};
+    // if (req.query.set_id) {
+    //   query.SetId = req.query.set_id;
+    // }
+
+
     db.Category.findAll({
-      // include: [ Set ]
+      include: [{ model: db.Set }],
+      where: req.query
+      
     }).then(function(data) {
       var allCategories = {cats: data};
       // console.log(JSON.stringify(allCategories));
       // console.log("CATEGORY name: " + data[0].cat_name);
+      // console.log("----------");
+      // console.log("DATA: " + JSON.stringify(data));
+      // console.log("----------");
+      // console.log("ALLCATEGORIES: " + JSON.stringify(allCategories));
+      // console.log("----------");
+      // console.log("THIS: ");
+      // console.log("----------");
+      // console.log("SETS: " + JSON.stringify(allCategories.cats));
+      // console.log("----------");
+      console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
+      console.log("----------");
+      console.log("Sets.CategoryId: " + JSON.stringify(allCategories.cats[0].Sets[0]));
+      console.log("----------");
+      console.log("Sets.title: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
+      console.log("----------");
+      
       res.render("index", allCategories);
     });
   });
 
 
-  app.get("/", function(req, res) {
-    db.Set.findAll({
-      where: {
-        "Category.id": req.params.CategoryId
-      },
-      include: [db.User]
-      // include: [ Flashcard ]
-    }).then(function(data) {
-      var allSets = {sets: data};
-      console.log(JSON.stringify(allSets));
-      console.log("SET title: " + data[0].title);
-      res.render("index", allSets);
-    });
-  });
+
+  // app.get("/", function(req, res) {
+  //   db.Set.findAll({
+  //     where: {
+  //       CategoryId: 1
+  //     }
+  //     // include: [ Flashcard ]
+  //   }).then(function(data) {
+  //     var allSets = {sets: data};
+  //     console.log(JSON.stringify(allSets));
+  //     // console.log("SET title: " + data[0].title);
+  //     res.render("index", allSets);
+  //   });
+  // });
 
 
 
@@ -54,16 +82,7 @@ module.exports = function(app) {
     
   });
 
-  // app.get("/:id", function(req, res) {
-
-  //   db.Set.findAll({
-  //   }).then(function(data) {
-  //     console.log("SET data: " + data);
-  //     console.log("SET title: " + data[0].title);
-  //     console.log("SET url: " + data[0].url);
-  //     res.render("index", data);
-  //   });
-  // });
+  
 
 
   app.get("/:user_id", function(req, res) {
