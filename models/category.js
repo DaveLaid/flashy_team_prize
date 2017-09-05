@@ -14,5 +14,34 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
+
+  // // force: true will drop the table if it already exists
+  // Category.sync({force: true}).then(() => {
+  //   // Table created
+  //   Category.create({
+  //   cat_name: 'Math'
+  //   });
+
+  //   Category.create({
+  //   cat_name: 'Biology'
+  //   });
+
+  //   Category.create({
+  //   cat_name: 'History'
+  //   });
+
+  //   Category.create({
+  //   cat_name: 'Programming'
+  //   });
+
+  //   Category.create({
+  //   cat_name: 'Literature'
+  //   });
+
+  //   Category.create({
+  //   cat_name: 'Civics'
+  //   });
+  // });
+
   return Category;
 };

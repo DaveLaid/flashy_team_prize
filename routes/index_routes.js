@@ -15,15 +15,34 @@ module.exports = function(app) {
   // Create all our routes and set up logic within those routes where required.
 
   app.get("/", function(req, res) {
-
     db.Category.findAll({
+      // include: [ Set ]
     }).then(function(data) {
-      //console.log("CATEGORY data: " + data);
-      //console.log("CATEGORY name: " + data[0].cat_name);
-      res.render("index", data);
+      var allCategories = {cats: data};
+      // console.log(JSON.stringify(allCategories));
+      // console.log("CATEGORY name: " + data[0].cat_name);
+      res.render("index", allCategories);
     });
-
   });
+
+
+  app.get("/", function(req, res) {
+    db.Set.findAll({
+      where: {
+        "Category.id": req.params.CategoryId
+      },
+      include: [db.User]
+      // include: [ Flashcard ]
+    }).then(function(data) {
+      var allSets = {sets: data};
+      console.log(JSON.stringify(allSets));
+      console.log("SET title: " + data[0].title);
+      res.render("index", allSets);
+    });
+  });
+
+
+
 
   app.get("/create", function(req, res) {
 
@@ -34,6 +53,7 @@ module.exports = function(app) {
     });
     
   });
+
   // app.get("/:id", function(req, res) {
 
   //   db.Set.findAll({
@@ -57,11 +77,11 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/create", function(req, res) {
-      console.log("here in create route 2");
-      res.render("create.handlebars");
+  // app.get("/create", function(req, res) {
+  //     console.log("here in create route 2");
+  //     res.render("create.handlebars");
 
-  });
+  // });
   // app.post("/", function(req, res) {
   //   db.Burger.create({
   //     burger_name: req.body.burger_name,
