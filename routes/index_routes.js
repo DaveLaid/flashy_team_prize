@@ -162,16 +162,16 @@ module.exports = function(app) {
 
 
 
-  app.get("/:user_id", function(req, res) {
+  // app.get("/user/:user_id", function(req, res) {
 
-    db.User.findOne({
-      displayname: req.params.displayname,
-      username: req.params.username
-    }).then(function(data) {
-      console.log("USER data: " + data);
-      res.render("index", data);
-    });
-  });
+  //   db.User.findOne({
+  //     displayname: req.params.displayname,
+  //     username: req.params.username
+  //   }).then(function(data) {
+  //     console.log("USER data: " + data);
+  //     res.render("index", data);
+  //   });
+  // });
 
   // app.get("/create", function(req, res) {
   //     console.log("here in create route 2");
