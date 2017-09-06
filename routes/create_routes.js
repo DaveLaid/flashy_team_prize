@@ -9,17 +9,28 @@ var db = require("../models");
 module.exports = function(app) {
 
   // Create all our routes and set up logic within those routes where required.
-//  app.get("/create", function(req, res) {
-//      console.log("here in create route");
-//      res.render("create.handlebars");
-//  });
 
-  app.get("/create", function(req, res) {
+ app.get("/create", function(req, res) {
 
     db.Category.findAll({
+      include: [{ model: db.Set }],
+        where: req.query
+      
     }).then(function(data) {
-      console.log("here in create route");
-      res.render("create.handlebars", data);
+      var allCategories = {cats: data};
+      // console.log("----------");
+      // console.log("DATA: " + JSON.stringify(data));
+      // console.log("----------");
+      // console.log("ALLCATEGORIES: " + JSON.stringify(allCategories));
+      console.log("----------");
+      console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
+      console.log("----------");
+      console.log("SETS: " + JSON.stringify(allCategories.cats[0].Sets[0]));
+      console.log("----------");
+      console.log("SETS.TITLE: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
+      console.log("----------");
+      
+      res.render("create.handlebars", allCategories);
     });
   });
   // app.get("/:id", function(req, res) {

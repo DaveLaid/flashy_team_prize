@@ -101,12 +101,12 @@
 <div id="display-sets" class="modal">
   <div class="modal-content">
 
-    {{#each cats}}
-        {{#if this.cat_name}}
-            <h5>{{ this.cat_name }} - Sets</h5>
-        {{/if}}
-    {{/each}}
+    {{#with cats }}
+            <h5 id="{{this.cat_name}}">{{ this.cat_name }} - Sets</h5>
+        
+    {{/with}}
     
+
     
     <div class="row modal-row view-set" >
     <!-- allCategories.cats[0].Sets[0].title -->
@@ -182,5 +182,7 @@
   $("#play-flashcards").on("click", function(event) {
       $('#play-flashcards').modal('open');
   });
+
+  // $("#oneCategory").html(this.val());
 
 </script>
