@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       set: function(val){
-        "www.flashy.com/flashcards/" + this.setDataValue('url', val.toLowerCase());
+        "www.flashy.com/flashcards/" + this.setDataValue('id', val.toLowerCase());
       },
       validate: {
         len: [1, 255]

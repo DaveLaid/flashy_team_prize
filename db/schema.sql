@@ -11,10 +11,10 @@ SELECT * FROM categories;
 
 
 
-DROP TABLE users;
-DROP TABLE sets;
-DROP TABLE flashcards;
-DROP TABLE categories;
+-- DROP TABLE users;
+-- DROP TABLE sets;
+-- DROP TABLE flashcards;
+-- DROP TABLE categories;
 
 
 CREATE TABLE users
