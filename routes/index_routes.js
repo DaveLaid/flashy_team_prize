@@ -1,6 +1,7 @@
 // Requiring our models
 var db = require("../models");
 
+var count = 1;
 
 // HOME PAGE NEEDS:
   // GET SET
@@ -27,29 +28,37 @@ module.exports = function(app) {
 
     db.Category.findAll({
       include: [{ model: db.Set }],
-      where: req.query
-
+        where: req.query
+      
     }).then(function(data) {
       var allCategories = {cats: data};
-      // console.log(JSON.stringify(allCategories));
-      // console.log("CATEGORY name: " + data[0].cat_name);
+      
       // console.log("----------");
-      // console.log("DATA: " + JSON.stringify(data));
-      // console.log("----------");
-      // console.log("ALLCATEGORIES: " + JSON.stringify(allCategories));
-      // console.log("----------");
-      // console.log("THIS: ");
-      // console.log("----------");
-      // console.log("SETS: " + JSON.stringify(allCategories.cats));
+      // console.log("DATA OBJECT: " + JSON.stringify(allCategories.cats));
       // console.log("----------");
       // console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
       // console.log("----------");
-      // console.log("Sets.CategoryId: " + JSON.stringify(allCategories.cats[0].Sets[0]));
+      // console.log("SETS_ONE: " + JSON.stringify(allCategories.cats[0].Sets[0]));
       // console.log("----------");
-      // console.log("Sets.title: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
+      // console.log("SETS.TITLE: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
       // console.log("----------");
 
       res.render("index", allCategories);
+    });
+  });
+
+
+
+
+  app.post("/", function(req, res) {
+    db.Flashcard.create({
+      flash_num: count,
+      question: req.body.question,
+      answer: req.body.answer
+    }).then(function(data){
+      
+      return res.json(data);
+      res.redirect("/");
     });
   });
 
