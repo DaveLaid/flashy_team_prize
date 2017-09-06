@@ -28,7 +28,7 @@ module.exports = function(app) {
     db.Category.findAll({
       include: [{ model: db.Set }],
       where: req.query
-      
+
     }).then(function(data) {
       var allCategories = {cats: data};
       // console.log(JSON.stringify(allCategories));
@@ -42,13 +42,13 @@ module.exports = function(app) {
       // console.log("----------");
       // console.log("SETS: " + JSON.stringify(allCategories.cats));
       // console.log("----------");
-      console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
-      console.log("----------");
-      console.log("Sets.CategoryId: " + JSON.stringify(allCategories.cats[0].Sets[0]));
-      console.log("----------");
-      console.log("Sets.title: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
-      console.log("----------");
-      
+      // console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
+      // console.log("----------");
+      // console.log("Sets.CategoryId: " + JSON.stringify(allCategories.cats[0].Sets[0]));
+      // console.log("----------");
+      // console.log("Sets.title: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
+      // console.log("----------");
+
       res.render("index", allCategories);
     });
   });
@@ -79,10 +79,78 @@ module.exports = function(app) {
       console.log("here in create route");
       res.render("create.handlebars", data);
     });
-    
+
   });
 
-  
+  // create flashcards data is posted here
+  app.post("/create", function(req, res) {
+    console.log("got here to post create in index.routes");
+
+    console.log("title:"+req.body.flashcards_title);
+    console.log("category:"+req.body.category);
+
+    //Flashcard 1
+    console.log(req.body.q1);
+    console.log(req.body.a1);
+
+    //Flashcard 2
+    console.log(req.body.q2);
+    console.log(req.body.a2);
+
+    //Flashcard 3
+    console.log(req.body.q3);
+    console.log(req.body.a3);
+
+    db.Category.findOne({
+      where: {
+        cat_name: req.body.category
+      }
+    }
+     ).then(function(data) {
+      console.log("USER data (id): " + data.id);
+      console.log("USER data (catname): " + data.cat_name);
+      var mynewset = db.Set.create({
+        title: req.body.flashcards_title,
+         url: 'www.google.com',
+         CategoryId: data.id,
+         UserId: 1
+       }).then(function(data2) {
+         console.log("CategoryID: "+data2.id);
+
+      var mynewcard1 = db.Flashcard.create({
+         flash_num: data2.id,
+         question: req.body.q1,
+         answer: req.body.a1
+      });
+
+      var mynewcard2 = db.Flashcard.create({
+         flash_num: data2.id,
+         question: req.body.q2,
+         answer: req.body.a2
+       });
+
+     var mynewcard3 = db.Flashcard.create({
+        flash_num: data2.id,
+        question: req.body.q3,
+        answer: req.body.a3
+
+    });
+  });
+  }); 
+      //res.render("index", data);
+
+    // var set_of_flashcards = [];
+    //     for(i=0;i<data2.length;i++) {
+    //     }
+    // db.Flashcard.create({
+    //
+    // }).then(function(data) {
+    //   console.log("here in post route 1");
+    //   res.redirect("/");
+    // });
+  });
+
+
 
 
   app.get("/:user_id", function(req, res) {
