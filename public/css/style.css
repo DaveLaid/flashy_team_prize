@@ -118,7 +118,8 @@ nav {
   background-color: ;
 }
 .content-card {
-  min-height: 150px;
+  min-height: 170px;
+  border-top: 2px solid #f90606;
   border-bottom: 2px solid #08bff7;
 }
 .controls-card {
@@ -130,9 +131,9 @@ nav {
 .input-field {
   margin-top: 0;
 }
-.flip, .arrows {
+.flip {
   text-align: center;
-  margin: 10px 0;
+  margin-top: 15px;
 }
 .flip .btn {
   background-color: #f90606;
@@ -152,7 +153,7 @@ nav {
   background-color: #f90606;
 }
 .share-card {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .divider {
