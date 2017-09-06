@@ -11,7 +11,12 @@ module.exports = function(app) {
   // Create all our routes and set up logic within those routes where required.
 
   app.get("/category", function(req, res) {
+console.log("in category route");
+   db.Category.findAll({
+      include: [{ model: db.Set }],
+        where: req.query
 
+<<<<<<< HEAD
     db.Category.findAll({
       include: [{ model: db.Set }],
         where: req.query
@@ -36,12 +41,28 @@ module.exports = function(app) {
 
   // app.get("/category", function(req, res) {
     
+=======
+   }).then(function(data) {
+      var allCategories = {cats: data};
+
+
+     res.render("category.handlebars", allCategories);
+    });
+  });
+
+  // app.get("/category", function(req, res) {
+  //
+>>>>>>> c191a2dacc00289807e42c62a08066598e1eb7d1
   //   db.User.findOne({
   //     displayname: req.params.displayname,
   //     username: req.params.username
   //   }).then(function(data) {
   //     res.render("category", data);
+<<<<<<< HEAD
 
+=======
+  //
+>>>>>>> c191a2dacc00289807e42c62a08066598e1eb7d1
   //   });
   // });
 

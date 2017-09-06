@@ -29,10 +29,10 @@ module.exports = function(app) {
     db.Category.findAll({
       include: [{ model: db.Set }],
         where: req.query
-      
+
     }).then(function(data) {
       var allCategories = {cats: data};
-      
+
       // console.log("----------");
       // console.log("DATA OBJECT: " + JSON.stringify(allCategories.cats));
       // console.log("----------");
@@ -56,7 +56,7 @@ module.exports = function(app) {
       question: req.body.question,
       answer: req.body.answer
     }).then(function(data){
-      
+
       return res.json(data);
       res.redirect("/");
     });
@@ -145,7 +145,7 @@ module.exports = function(app) {
 
     });
   });
-  }); 
+  });
       //res.render("index", data);
 
     // var set_of_flashcards = [];
@@ -161,8 +161,12 @@ module.exports = function(app) {
 
 
 
+<<<<<<< HEAD
 
   // app.get("/user/:user_id", function(req, res) {
+=======
+  app.get("/user/user_id", function(req, res) {
+>>>>>>> c191a2dacc00289807e42c62a08066598e1eb7d1
 
   //   db.User.findOne({
   //     displayname: req.params.displayname,
