@@ -25,6 +25,9 @@ h5 {
   text-align: left;
   padding:left: 15px;
 }
+a {
+  color: #ffffff;
+}
 .fa {
   color: #08bff7;
 }
@@ -61,8 +64,14 @@ nav {
   margin:0;
 }
 
+/*********** category page **********/
+#category-flashcards {
+  display: block;
+  padding-top: 50px;
+}
 /*********** cards **********/
 .card-panel {
+  color: #ffffff;
   border-radius: 0;
   box-shadow: none;
 }

@@ -11,36 +11,29 @@ module.exports = function(app) {
   // Create all our routes and set up logic within those routes where required.
 
   app.get("/category", function(req, res) {
+console.log("in category route");
+   db.Category.findAll({
+      include: [{ model: db.Set }],
+        where: req.query
 
-    db.Set.findAll({
-    }).then(function(data) {
-      // var flashObj = {data: data};
-      // console.log(data);
-      res.render("category", data);
+   }).then(function(data) {
+      var allCategories = {cats: data};
 
-      // res.sendFile(path.join(__dirname, "../views/index"));
+
+     res.render("category.handlebars", allCategories);
     });
   });
 
-  
-  app.get("/category", function(req, res) {
-    
-    db.Category.findAll({
-    }).then(function(data) {
-      res.render("category", data);
-    });
-  });
-
-  app.get("/category", function(req, res) {
-    
-    db.User.findOne({
-      displayname: req.params.displayname,
-      username: req.params.username
-    }).then(function(data) {
-      res.render("category", data);
-
-    });
-  });
+  // app.get("/category", function(req, res) {
+  //
+  //   db.User.findOne({
+  //     displayname: req.params.displayname,
+  //     username: req.params.username
+  //   }).then(function(data) {
+  //     res.render("category", data);
+  //
+  //   });
+  // });
 
 
 };

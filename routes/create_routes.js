@@ -15,7 +15,7 @@ module.exports = function(app) {
     db.Category.findAll({
       include: [{ model: db.Set }],
         where: req.query
-      
+
     }).then(function(data) {
       var allCategories = {cats: data};
       // console.log("----------");
@@ -29,7 +29,7 @@ module.exports = function(app) {
       console.log("----------");
       console.log("SETS.TITLE: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
       console.log("----------");
-      
+
       res.render("create.handlebars", allCategories);
     });
   });
