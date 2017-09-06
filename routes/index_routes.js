@@ -69,7 +69,15 @@ module.exports = function(app) {
   //   });
   // });
 
+  app.get("/category", function(req, res) {
+    console.log("here in category route 0");
+    db.Category.findAll({
+    }).then(function(data) {
+      console.log("here in category route");
+      res.render("category.handlebars", data);
+    });
 
+  });
 
 
   app.get("/create", function(req, res) {
@@ -136,7 +144,7 @@ module.exports = function(app) {
 
     });
   });
-  }); 
+  });
       //res.render("index", data);
 
     // var set_of_flashcards = [];

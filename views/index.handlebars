@@ -71,16 +71,13 @@
 
       <div class="divider"></div>
       <h5>Browse Subjects!</h5>
-
       <br>
 
       {{#each cats}}
       <div class="section col s12 m4">
-        <div href="#display-sets" class="modal-trigger card-panel teal">
-
-          <span id="{{this.cat_name}}" value="{{this.cat_name}}" class="white-text">{{ this.cat_name }}</span>
-
-        </div>
+        <a href="/category"><div  class="card-panel teal">
+            <span id="{{this.cat_name}}" value="{{this.cat_name}}" class="white-text">{{ this.cat_name }}</span>
+        </div></a>
       </div>
       {{/each}}
 
@@ -98,32 +95,7 @@
 
 
 
-<div id="display-sets" class="modal">
-  <div class="modal-content">
 
-    {{#each cats}}
-        {{#if this.cat_name}}
-            <h5>{{ this.cat_name }} - Sets</h5>
-        {{/if}}
-    {{/each}}
-
-
-    <div class="row modal-row view-set" >
-    <!-- allCategories.cats[0].Sets[0].title -->
-
-      {{#each cats}}
-        {{#if this.cat_name}}
-          {{#each this.Sets}}
-        <div class="col s12 set"><a href="#play-flashcards" value="view-set" class="btn modal-trigger card-panel" >{{ title }}</a></div>
-        <p>Created by <a href="#">(User Name)</a></p>
-          {{/each}}
-        {{/if}}
-      {{/each}}
-
-    </div>
-
-  </div> <!-- end modal content -->
-</div> <!-- end display-sets modal -->
 
 
 
