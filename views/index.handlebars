@@ -76,11 +76,9 @@
 
       {{#each cats}}
       <div class="section col s12 m4">
-        <div href="#display-sets" class="modal-trigger card-panel teal">
-        
-          <span id="{{this.cat_name}}" value="{{this.cat_name}}" class="white-text">{{ this.cat_name }}</span>
-        
-        </div>
+        <a href="/category"><div  class="card-panel teal">
+            <span id="{{this.cat_name}}" value="{{this.cat_name}}" class="white-text">{{ this.cat_name }}</span>
+        </div></a>
       </div>
       {{/each}}
 
@@ -101,16 +99,15 @@
 <div id="display-sets" class="modal">
   <div class="modal-content">
 
-    {{#each cats}}
-        {{#if this.cat_name}}
-            <h5>{{ this.cat_name }} - Sets</h5>
-        {{/if}}
-    {{/each}}
-    
-    
+    {{#with cats }}
+            <h5 id="{{this.cat_name}}">{{ this.cat_name }} - Sets</h5>
+
+    {{/with}}
+
+
     <div class="row modal-row view-set" >
     <!-- allCategories.cats[0].Sets[0].title -->
-    
+
       {{#each cats}}
         {{#if this.cat_name}}
           {{#each this.Sets}}
@@ -119,13 +116,11 @@
           {{/each}}
         {{/if}}
       {{/each}}
-  
+
     </div>
-    
 
   </div> <!-- end modal content -->
 </div> <!-- end display-sets modal -->
-
 
 
 
@@ -136,30 +131,18 @@
     <h5>Flashcard Title</h5>
     <p>Author</p>
 
-    <div class="row modal-row view-card">
-      <div class="col s6 view-card-option" href="/shuffle"><p>SHUFFLE</p></div>
-
-      <div class="col s6 view-card-option" href="/both-sides"><p>SEE BOTH SIDES</p></div>
-    </div>
-
     <div class="row modal-row content-card">
       <!-- front / back / both sides of card appear here -->
     </div>
 
     <div class="row modal-row controls-card">
-      <div class="col s12 flip"><a href="#" value="flip-card" class="btn">FLIP</a></div>
-    </div>
-    <div class="row modal-row">
       <div class="col s4 previous"><a href="#" value="previous-card" class="btn">PREVIOUS</a></div>
-      <div class="col s4 arrows"><i class="fa fa-arrows fa-4x" aria-hidden="true"></i></div>
+      <div class="col s4 flip"><a href="#" value="flip-card" class="btn">FLIP</a></div>
       <div class="col s4 next"><a href="#" value="next-card" class="btn">NEXT</a></div>
-    </div>
-    <div class="row modal-row">
-      <div class="col s12 flip"><a href="#" value="flip-card" class="btn">FLIP</a></div>
     </div>
 
     <div class="row modal-row share-card">
-      <button class="col s12 btn waves-effect waves-light" type="submit" value="share-card" name="share-card">Share Flashcards</button>
+      <button class="col s12 btn" type="submit" value="share-card" name="share-card">Share Flashcards</button>
       <!-- <a href="#" value="share-card" class="waves-effect waves-light btn">Share Flashcards!</a> -->
     </div>
 
@@ -182,5 +165,7 @@
   $("#play-flashcards").on("click", function(event) {
       $('#play-flashcards').modal('open');
   });
+
+  // $("#oneCategory").html(this.val());
 
 </script>

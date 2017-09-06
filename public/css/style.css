@@ -36,6 +36,30 @@ nav {
   background-color: #f90606; /*#d50000;*/
   box-shadow: 0 2px 2px 0 rgba(8,191,247,0.3), 0 1px 5px 0 rgba(8,191,247,0.12), 0 3px 1px -2px rgba(8,191,247,0.2);
 }
+.the_crumbs {
+  padding: 0;
+  float: right;
+}
+.the_crumbs .col {
+  padding: 0 15px 0 0;
+}
+.breadcrumb {
+  font-size: 15px;
+  color: #f90606;
+  /*color: rgba(249, 6, 6, .1);*/
+  /*color: rgba(255,255,255,0.7);*/
+}
+.fa-chevron-right {
+  margin-left: 20px;
+}
+.breadcrumb:last-child {
+  color: #f90606;
+  margin: 0;
+  /*color: rgba(249, 6, 6, .2);*/
+}
+.breadcrumb:before {
+  margin:0;
+}
 
 /*********** cards **********/
 .card-panel {
@@ -94,7 +118,8 @@ nav {
   background-color: ;
 }
 .content-card {
-  min-height: 150px;
+  min-height: 170px;
+  border-top: 2px solid #f90606;
   border-bottom: 2px solid #08bff7;
 }
 .controls-card {
@@ -106,9 +131,9 @@ nav {
 .input-field {
   margin-top: 0;
 }
-.flip, .arrows {
+.flip {
   text-align: center;
-  margin: 10px 0;
+  margin-top: 15px;
 }
 .flip .btn {
   background-color: #f90606;
@@ -128,7 +153,7 @@ nav {
   background-color: #f90606;
 }
 .share-card {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .divider {
