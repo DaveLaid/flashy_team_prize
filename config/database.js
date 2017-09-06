@@ -5,6 +5,5 @@ module.exports = {
         'user': 'root',
         'password': ''
     },
-	'database': 'password_db',
-    'users_table': 'users'
+	'database': 'flashcards_db',
 };
