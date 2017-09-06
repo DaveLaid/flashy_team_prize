@@ -12,35 +12,38 @@ module.exports = function(app) {
 
   app.get("/category", function(req, res) {
 
-    db.Set.findAll({
-    }).then(function(data) {
-      // var flashObj = {data: data};
-      // console.log(data);
-      res.render("category", data);
-
-      // res.sendFile(path.join(__dirname, "../views/index"));
-    });
-  });
-
-  
-  app.get("/category", function(req, res) {
-    
     db.Category.findAll({
+      include: [{ model: db.Set }],
+        where: req.query
+      
     }).then(function(data) {
-      res.render("category", data);
+      var allCategories = {cats: data};
+      
+      // console.log("----------");
+      // console.log("DATA OBJECT: " + JSON.stringify(allCategories.cats));
+      // console.log("----------");
+      // console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
+      // console.log("----------");
+      // console.log("SETS_ONE: " + JSON.stringify(allCategories.cats[0].Sets[0]));
+      // console.log("----------");
+      // console.log("SETS.TITLE: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
+      // console.log("----------");
+
+      res.render("category.handlebars", allCategories);
     });
   });
 
-  app.get("/category", function(req, res) {
+
+  // app.get("/category", function(req, res) {
     
-    db.User.findOne({
-      displayname: req.params.displayname,
-      username: req.params.username
-    }).then(function(data) {
-      res.render("category", data);
+  //   db.User.findOne({
+  //     displayname: req.params.displayname,
+  //     username: req.params.username
+  //   }).then(function(data) {
+  //     res.render("category", data);
 
-    });
-  });
+  //   });
+  // });
 
 
 };
