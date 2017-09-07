@@ -36,6 +36,9 @@ nav {
   background-color: #f90606; /*#d50000;*/
   box-shadow: 0 2px 2px 0 rgba(8,191,247,0.3), 0 1px 5px 0 rgba(8,191,247,0.12), 0 3px 1px -2px rgba(8,191,247,0.2);
 }
+.container-fluid {
+  background-color: #f90606;
+}
 .the_crumbs {
   padding: 0;
   float: right;
@@ -186,6 +189,13 @@ input:not([type]):hover, input:not([type]):active, input:not([type]):focus, inpu
 
 
 /*********** form **********/
+
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+
+
 form p {
    color: #08bff7;
 }

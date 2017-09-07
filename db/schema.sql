@@ -20,9 +20,9 @@ DROP TABLE categories;
 CREATE TABLE users
 (
 	user_id int NOT NULL AUTO_INCREMENT,
-	displayname varchar(255) NOT NULL,
 	username varchar(255) NOT NULL,
 	password varchar(255) NOT NULL,
+	displayname varchar(255) NOT NULL,
 	PRIMARY KEY (user_id)
 );
 
@@ -77,4 +77,3 @@ CREATE TABLE bubbles
 	bub_id int NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY (bub_id)
 );
-
