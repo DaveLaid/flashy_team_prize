@@ -13,11 +13,22 @@ var db = require("../models");
 // Routes =============================================================
 module.exports = function(app) {
 
-  // Create all our routes and set up logic within those routes where required.
 
-  // var homeFunk = function (req, res) {
-  //   res.render("index", {allCategories, allSets});
-  // }
+    app.get("/play/:id", function(req, res) {
+
+      db.Flashcard.findAll({
+        where: {
+          flash_num: req.params.id
+        }
+
+      }).then(function(data) {
+        console.log("data", data);
+        res.render("flashcard.handlebars", data);
+      });
+
+    });
+
+
 
   app.get("/", function(req, res) {
     // var query = {};
@@ -55,48 +66,16 @@ module.exports = function(app) {
   });
 
 
-// var count = 1;
 
-//   app.post("/", function(req, res) {
-//     db.Flashcard.create({
-//       flash_num: count,
-//       question: req.body.question,
-//       answer: req.body.answer
-//     }).then(function(data){
+  app.get("/create", function(req, res) {
 
-//       return res.json(data);
-//       res.redirect("/");
-//     });
-//   });
+    db.Category.findAll({
+    }).then(function(data) {
+      console.log("here in create route");
+      res.render("create.handlebars", data);
+    });
 
-
-
-  // app.get("/", function(req, res) {
-  //   db.Set.findAll({
-  //     where: {
-  //       CategoryId: 1
-  //     }
-  //     // include: [ Flashcard ]
-  //   }).then(function(data) {
-  //     var allSets = {sets: data};
-  //     console.log(JSON.stringify(allSets));
-  //     // console.log("SET title: " + data[0].title);
-  //     res.render("index", allSets);
-  //   });
-  // });
-
-
-
-
-  // app.get("/create", function(req, res) {
-
-  //   db.Category.findAll({
-  //   }).then(function(data) {
-  //     console.log("here in create route");
-  //     res.render("create.handlebars", data);
-  //   });
-
-  // });
+  });
 
 
   // create flashcards data is posted here
@@ -153,93 +132,8 @@ module.exports = function(app) {
 
       });
       res.redirect("/");
+      });
     });
   });
-
-      //res.render("index", data);
-
-    // var set_of_flashcards = [];
-    //     for(i=0;i<data2.length;i++) {
-    //     }
-    // db.Flashcard.create({
-    //
-    // }).then(function(data) {
-    //   console.log("here in post route 1");
-    //   res.redirect("/");
-    // });
-  // });
-
-
-
-
-
-  // app.get("/user/:user_id", function(req, res) {
-
-
-
-  //   db.User.findOne({
-  //     displayname: req.params.displayname,
-  //     username: req.params.username
-  //   }).then(function(data) {
-  //     console.log("USER data: " + data);
-  //     res.render("index", data);
-  //   });
-  // });
-
-
-  app.get("/play/:id", function(req, res) {
-
-    db.Flashcard.findAll({
-      where: {
-        flash_num: req.params.id
-      }
-
-    }).then(function(data) {
-      console.log("data", data);
-      res.render("flashcard", data);
-    });
-
-  });
-
-
-  // app.get("/flip/:id", function(req, res) {
-  //     console.log("here in flip");
-  //     res.render("index");
-  // });
-  //
-  // app.get("/previous:id", function(req, res) {
-  //     console.log("here in previous ", req.params.id);
-  //     res.render("index");
-  // });
-  //
-  // app.get("/next/:id", function(req, res) {
-  //     console.log("here in next");
-  //     res.render("index");
-  // });
-  // app.post("/", function(req, res) {
-  //   db.Burger.create({
-  //     burger_name: req.body.burger_name,
-  //     devoured: req.body.devoured
-  //   }).then(function(data){
-  //     // res.render("index", data);
-  //     res.redirect("/");
-  //     // return res.json(data);
-  //     // res.redirect("/");
-  //   });
-  // });
-
-  // app.put("/:id", function(req, res) {
-  //   db.Burger.update({
-  //     devoured: req.body.devoured
-  //   }, {
-  //     where: {
-  //       id: req.params.id
-  //     }
-  //   })
-  //   .then(function(data) {
-  //     // return res.json(data);
-  //     res.redirect("/");
-  //   });
-  // });
 
 };
