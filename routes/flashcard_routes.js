@@ -12,43 +12,43 @@ var db = require("../models");
 
 module.exports = function(app) {
 
-	app.get("/flashcard", function(req, res) {
+	// app.get("/flashcard", function(req, res) {
 
-	    db.User.findOne({
-	      displayname: req.params.displayname,
-	      username: req.params.username
-	    }).then(function(data) {
-	      res.render("flashcard", data);
-	    });
-  	});
-
-
-  	app.get("/flashcard", function(req, res) {
-	    db.Set.findAll({
-	    }).then(function(data) {
-	      res.render("flashcard", data);
-	    });
-  	});
-
-  	app.get("/flashcard/:id", function(req, res) {
-	    db.Set.findOne({
-	    	where: {
-	    		set_id: req.params.set_id
-	    	}
-	    }).then(function(data) {
-	      res.json(data);
-	      // res.render("flashcard", data);
-	    });
-  	});
+	//     db.User.findOne({
+	//       displayname: req.params.displayname,
+	//       username: req.params.username
+	//     }).then(function(data) {
+	//       res.render("flashcard", data);
+	//     });
+ //  	});
 
 
-	app.get("/flashcard", function(req, res) {
+  	// app.get("/flashcard", function(req, res) {
+	  //   db.Set.findAll({
+	  //   }).then(function(data) {
+	  //     res.render("flashcard", data);
+	  //   });
+  	// });
 
-		db.Category.findAll({
-		}).then(function(data) {
-		  res.render("flashcard", data);
-		});
-	});
+ //  	app.get("/flashcard/:id", function(req, res) {
+	//     db.Set.findOne({
+	//     	where: {
+	//     		set_id: req.params.set_id
+	//     	}
+	//     }).then(function(data) {
+	//       res.json(data);
+	//       // res.render("flashcard", data);
+	//     });
+ //  	});
+
+
+	// app.get("/flashcard", function(req, res) {
+
+	// 	db.Category.findAll({
+	// 	}).then(function(data) {
+	// 	  res.render("flashcard", data);
+	// 	});
+	// });
 
 
 	// app.post("/flashcard", function(req, res) {

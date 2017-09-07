@@ -1,84 +1,122 @@
 <div class="section no-pad-bot" id="index-banner">
   <div class="container">
 
-      <div class="the_crumbs">
+     <div class="the_crumbs">
         <div class="col s12">
           <a href="/" class="breadcrumb">Home</a>
           <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          <a href="/category" class="breadcrumb">Category</a>
+          <a href="/category/{{this.category}}" class="breadcrumb">Category</a>
         </div>
       </div>
 
 
-      <div id="category-flashcards">
+     <div id="category-flashcards">
 
-        <div class="divider"></div>
-
-            {{#if this.cat_name}}
-                <h5>{{ this.cat_name }} - Sets</h5>
-            {{/if}}
+       <div class="divider"></div>
 
 
+          <h5>{{ this.category }} - Sets</h5>
 
-        <div class="row">
-        <!-- allCategories.cats[0].Sets[0].title -->
+        <br >
+    
 
+       <div class="row">
 
-        {{#each cats}}
-          {{#if this.cat_name}}
+       
+       {{#each catSets}}
+          
             {{#each this.Sets}}
-
-              <div class="section col s12 m4">
-                <div href="#play-flashcards" class="modal-trigger card-panel teal"
-                    <span class="white-text" id="{{this.cat_name}}" value="{{this.cat_name}}" >{{ this.cat_name }}HELLO</span>
+             <div class="section col s12 m4">
+                <div id="{{this.id}}" href="#{{id}}" data-target="#{{id}}" class="modal-trigger card-panel teal">
+                    <span class="white-text" id="{{this.id}}" value="whatever"> {{ this.title }}</span>
                     <span class="white-text"><p>Created by <a href="#">(User Name)</a></p></span>
                 </div>
+            </div>
+
+          <!-- Modal Flashcard Deck Structure -->
+          <div id="{{id}}" class="modal">
+            <div class="modal-content">
+
+             <h5>Flashcard Title</h5>
+              <p>Author</p>
+
+             <div class="row modal-row content-card">
+                <p id="modal-question"></p>
+                <p id="modal-answer"></p>
+                <!-- front / back / both sides of card appear here -->
               </div>
 
-              {{/each}}
-            {{/if}}
-          {{/each}}
+             <div class="row modal-row controls-card">
+                <div class="col s4 previous"><a href="#" value="previous-card" class="btn">PREVIOUS</a></div>
+                <div class="col s4 flip"><a href="#" value="flip-card" class="btn">FLIP</a></div>
+                <div id="nextBtn" class="col s4 next"><a href="#" value="next-card" class="btn">NEXT</a></div>
+              </div>
+
+             <div class="row modal-row share-card">
+                <button class="col s12 btn" type="submit" value="share-card" name="share-card">Share Flashcards</button>
+                <!-- <a href="#" value="share-card" class="waves-effect waves-light btn">Share Flashcards!</a> -->
+              </div>
+
+           </div> <!-- end modal content -->
+          </div> <!-- end play-flashcards modal -->
 
 
-        </div>
+
+
+            {{/each}}
+        
+        {{/each}}
+        
+
+
+       </div> <!-- end row -->
       </div> <!-- end category Flashcards -->
 
-  </div>
+ </div>
 </div>
-
-<!-- Modal Flashcard Deck Structure -->
-<div id="play-flashcards" class="modal">
-  <div class="modal-content">
-
-    <div class="row modal-row">
-      <div class="col s8">
-        <h5>{{this.cat_name}}Flashcard Title</h5>
-        <p>Author</p>
-      </div>
-      <div id="share-btn" class="col s4">
-        <button class="col s12 btn" type="submit" value="share-card" name="share-card">Share Flashcards</button>
-      </div>
-    </div>
-
-    <div class="row modal-row content-card">
-      <!-- front / back / both sides of card appear here -->
-    </div>
-
-    <div class="row modal-row controls-card">
-      <div class="col s4 previous"><a href="#" value="previous-card" class="btn">PREVIOUS</a></div>
-      <div class="col s4 flip"><a href="#" value="flip-card" class="btn">FLIP</a></div>
-      <div class="col s4 next"><a href="#" value="next-card" class="btn">NEXT</a></div>
-    </div>
-
-  </div> <!-- end modal content -->
-</div> <!-- end play-flashcards modal -->
 
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<script src="js/init.js"></script>
+<script type="text/javascript" src="/js/materialize.min.js"></script>
+<script src="/js/init.js"></script>
 
 <script type="text/javascript">
 
 
+ 
+  
+
+
+$(document).on("click", ".modal-trigger", function() {
+
+  var setId = $(this).attr("id");
+
+  $.ajax({
+    method: "GET",
+    url: "/category/{{this.category}}/" + setId
+  }).done(function(data) {
+      $('.modal-content').modal("open");
+
+      var i = 0;
+
+      $("#modal-question").html(data[i].question);
+      $("#modal-answer").html(data[i].answer);
+
+      $("#nextBtn").on("click", function() {
+        i++;
+        $("#modal-question").html(data[i].question);
+        $("#modal-answer").html(data[i].answer);
+      });
+
+    });
+
+    
+  
+
+  });
+
+
+
 </script>
+
+

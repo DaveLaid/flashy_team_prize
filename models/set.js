@@ -9,11 +9,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     url: {
       type: DataTypes.STRING,
-      allowNull: true,
-      defaultValue: 'www.google.com',
-      set: function(val){
-        "www.flashy.com/flashcards/" + this.setDataValue('id', val.toLowerCase());
-      },
+      // allowNull: false,
+      // set: function(val){
+      //   "www.flashy.com/flashcards/" + this.setDataValue('id', val.toLowerCase());
+      // },
       validate: {
         len: [1, 255]
       }

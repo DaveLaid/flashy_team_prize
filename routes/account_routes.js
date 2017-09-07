@@ -1,5 +1,5 @@
 // Requiring our models
-var db = require("../models");
+// var db = require("../models");
 
 // ACCOUNT PAGE NEEDS:
 	// GET USER
@@ -7,37 +7,37 @@ var db = require("../models");
   	// GET CATEGORY
   	// links to account page, category page, set page (and eventually favorites).
 
-module.exports = function(app) {
+// module.exports = function(app) {
 
 
-	app.get("/account", function(req, res) {
+	// app.get("/account", function(req, res) {
     
-	    db.User.findOne({
-	      displayname: req.params.displayname,
-	      username: req.params.username
-	    }).then(function(data) {
-	      res.render("index", data);
-	    });
-  	});
+	//     db.User.findOne({
+	//       displayname: req.params.displayname,
+	//       username: req.params.username
+	//     }).then(function(data) {
+	//       res.render("index", data);
+	//     });
+ //  	});
 
 
-  	app.get("/account", function(req, res) {
+ //  	app.get("/account", function(req, res) {
     
-	    db.Set.findAll({
-	    }).then(function(data) {
-	      // console.log(data);
-	      res.render("account", data);
-	    });
-  	});
+	//     db.Set.findAll({
+	//     }).then(function(data) {
+	//       // console.log(data);
+	//       res.render("account", data);
+	//     });
+ //  	});
 
 
-	app.get("/account", function(req, res) {
+	// app.get("/account", function(req, res) {
 
-		db.Category.findAll({
-		}).then(function(data) {
-		  res.render("account", data);
-		});
-	});
+	// 	db.Category.findAll({
+	// 	}).then(function(data) {
+	// 	  res.render("account", data);
+	// 	});
+	// });
 
 
-};
+// };

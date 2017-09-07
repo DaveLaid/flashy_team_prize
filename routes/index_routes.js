@@ -1,7 +1,7 @@
 // Requiring our models
 var db = require("../models");
 
-var count = 1;
+
 
 // HOME PAGE NEEDS:
   // GET SET
@@ -39,15 +39,15 @@ module.exports = function(app) {
            }}).then(function(data2) {
       var allCategories = {cats: data, mysets : data2};
 
-      // console.log("----------");
-      // console.log("DATA OBJECT: " + JSON.stringify(allCategories.cats));
-      // console.log("----------");
-      // console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
-      // console.log("----------");
-      // console.log("SETS_ONE: " + JSON.stringify(allCategories.cats[0].Sets[0]));
-      // console.log("----------");
-      // console.log("SETS.TITLE: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
-      // console.log("----------");
+      console.log("----------");
+      console.log("DATA OBJECT: " + JSON.stringify(allCategories.cats));
+      console.log("----------");
+      console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
+      console.log("----------");
+      console.log("SETS_ONE: " + JSON.stringify(allCategories.cats[0].Sets[0]));
+      console.log("----------");
+      console.log("SETS.TITLE: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
+      console.log("----------");
 
       res.render("index", allCategories);
     });
@@ -55,19 +55,19 @@ module.exports = function(app) {
   });
 
 
+// var count = 1;
 
+//   app.post("/", function(req, res) {
+//     db.Flashcard.create({
+//       flash_num: count,
+//       question: req.body.question,
+//       answer: req.body.answer
+//     }).then(function(data){
 
-  app.post("/", function(req, res) {
-    db.Flashcard.create({
-      flash_num: count,
-      question: req.body.question,
-      answer: req.body.answer
-    }).then(function(data){
-
-      return res.json(data);
-      res.redirect("/");
-    });
-  });
+//       return res.json(data);
+//       res.redirect("/");
+//     });
+//   });
 
 
 
@@ -88,15 +88,16 @@ module.exports = function(app) {
 
 
 
-  app.get("/create", function(req, res) {
+  // app.get("/create", function(req, res) {
 
-    db.Category.findAll({
-    }).then(function(data) {
-      console.log("here in create route");
-      res.render("create.handlebars", data);
-    });
+  //   db.Category.findAll({
+  //   }).then(function(data) {
+  //     console.log("here in create route");
+  //     res.render("create.handlebars", data);
+  //   });
 
-  });
+  // });
+
 
   // create flashcards data is posted here
   app.post("/create", function(req, res) {
@@ -154,6 +155,7 @@ module.exports = function(app) {
       res.redirect("/");
     });
   });
+
       //res.render("index", data);
 
     // var set_of_flashcards = [];
@@ -165,20 +167,24 @@ module.exports = function(app) {
     //   console.log("here in post route 1");
     //   res.redirect("/");
     // });
-  });
+  // });
 
 
 
-  app.get("/user/user_id", function(req, res) {
 
-    db.User.findOne({
-      displayname: req.params.displayname,
-      username: req.params.username
-    }).then(function(data) {
-      console.log("USER data: " + data);
-      res.render("index", data);
-    });
-  });
+
+  // app.get("/user/:user_id", function(req, res) {
+
+
+
+  //   db.User.findOne({
+  //     displayname: req.params.displayname,
+  //     username: req.params.username
+  //   }).then(function(data) {
+  //     console.log("USER data: " + data);
+  //     res.render("index", data);
+  //   });
+  // });
 
 
   app.get("/play/:id", function(req, res) {
