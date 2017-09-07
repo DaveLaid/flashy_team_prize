@@ -13,9 +13,10 @@ INSERT INTO sets (title, url, createdAt, updatedAt, CategoryId, UserId) VALUES (
 INSERT INTO sets (title, url, createdAt, updatedAt, CategoryId, UserId) VALUES ('Math 202', 'http://catalog.csuci.edu/preview_course_nopop.php?catoid=11&coid=20549', '20170904', '20170904', 1, 1);
 INSERT INTO sets (title, url, createdAt, updatedAt, CategoryId, UserId) VALUES ('biology 101', 'www.google.com', '20170904', '20170904', 2, 1);
 
+
 INSERT INTO flashcards (flash_num, question, answer, createdAt, updatedAt, SetId) VALUES (1, 'What is 2 + 2?', '4', '20170901', '20170901', 1);
 INSERT INTO flashcards (flash_num, question, answer, createdAt, updatedAt, SetId) VALUES (2, 'What is 5 - 3?', '2', '20170901', '20170901', 1);
 INSERT INTO flashcards (flash_num, question, answer, createdAt, updatedAt, SetId) VALUES (1, '5 x 3 = ?', '15', '20170904', '20170904', 2);
 INSERT INTO flashcards (flash_num, question, answer, createdAt, updatedAt, SetId) VALUES (2, '12 x 5 = ?', '60', '20170904', '20170904', 2);
-
+INSERT INTO flashcards (flash_num, question, answer, createdAt, updatedAt, SetId) VALUES (1, 'Biology Question', 'Biology Answer', '20170907', '20170907', 3);
 

@@ -14,19 +14,19 @@ var db = require("../models");
 module.exports = function(app) {
 
 
-    app.get("/play/:id", function(req, res) {
+    // app.get("/play/:id", function(req, res) {
 
-      db.Flashcard.findAll({
-        where: {
-          flash_num: req.params.id
-        }
+    //   db.Flashcard.findAll({
+    //     where: {
+    //       flash_num: req.params.id
+    //     }
 
-      }).then(function(data) {
-        console.log("data", data);
-        res.render("flashcard.handlebars", data);
-      });
+    //   }).then(function(data) {
+    //     console.log("data", data);
+    //     res.render("flashcard.handlebars", data);
+    //   });
 
-    });
+    // });
 
 
 
@@ -65,6 +65,27 @@ module.exports = function(app) {
     });
   });
 
+
+
+
+  app.get("/api/:sets", function(req, res) {
+    console.log("---------------- ");
+    console.log("DID WE GET HERE? ");
+    console.log("---------------- ");
+    db.Set.findOne({
+      include: [{ model: db.Flashcard}],
+        where: { id: req.params.sets }
+
+    }).then(function(data){
+      console.log("ARE WE GETTING DATA?");
+      console.log(data.dataValues.Flashcards[0].dataValues.question);
+      res.json(data.dataValues);
+
+     
+     
+    });
+
+  });
 
 
   app.get("/create", function(req, res) {
