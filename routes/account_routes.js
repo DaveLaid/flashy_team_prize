@@ -1,5 +1,5 @@
 // Requiring our models
-var db = require("../models");
+// var db = require("../models");
 
 // ACCOUNT PAGE NEEDS:
 	// GET USER
@@ -7,7 +7,7 @@ var db = require("../models");
   	// GET CATEGORY
   	// links to account page, category page, set page (and eventually favorites).
 
-module.exports = function(app) {
+// module.exports = function(app) {
 
 
 	// app.get("/account", function(req, res) {
@@ -40,4 +40,4 @@ module.exports = function(app) {
 	// });
 
 
-};
+// };

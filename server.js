@@ -18,7 +18,7 @@ var db = require("./models");
 
 // Serve static content for the app from the "public" directory in the application directory.
 // =============================================================
-app.use(express.static("public"));
+app.use(express.static("./public"));
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -39,14 +39,14 @@ app.set("view engine", "handlebars");
 
 // Routes
 // =============================================================
-// var routes = require("./routes/");
 // require("./routes/html_routes.js")(app);
 require("./routes/index_routes.js")(app);
-require("./routes/user_routes.js")(app);
-require("./routes/account_routes.js")(app);
-require("./routes/flashcard_routes.js")(app);
 require("./routes/category_routes.js")(app);
-require("./routes/create_routes.js")(app);
+// require("./routes/user_routes.js")(app);
+// require("./routes/account_routes.js")(app);
+// require("./routes/flashcard_routes.js")(app);
+
+// require("./routes/create_routes.js")(app);
 
 
 // Syncing our sequelize models and then starting our Express app
