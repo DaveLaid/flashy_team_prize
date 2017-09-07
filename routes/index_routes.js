@@ -1,5 +1,9 @@
 // Requiring our models
 var db = require("../models");
+var passport = require("../config/passport");
+
+// Requiring path to so we can use relative routes to our HTML files
+var path = require("path");
 
 
 
@@ -12,6 +16,96 @@ var db = require("../models");
 
 // Routes =============================================================
 module.exports = function(app) {
+
+    // signup page
+  app.get("/", function(req, res) {
+    // If the user already has an account, send them to the login page
+    if (req.user) {
+      res.redirect("/index");
+    }
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
+  });
+
+  app.get("/signup", function(req, res) {
+    // If the user already has an account, send them to the login page
+    if (req.user) {
+      res.redirect("/index");
+    }
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
+  });
+
+  // login page
+  app.get("/login", function(req, res) {
+    // If the user already has an account send them to the home page
+    if (req.user) {
+      res.redirect("/index");
+    }
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+  });
+
+  // Here we've add our isAuthenticated middleware to this route.
+  // If a user who is not logged in tries to access this route they will be redirected to the signup page
+  //app.get("/index", isAuthenticated, function(req, res) {
+  //res.redirect("/index");
+  //console.log("user is logged in.")
+  //});
+
+  
+
+  //-------------------------------------------------------------
+  //-- api routes -----------------------------------------------
+
+  // Using the passport.authenticate middleware with our local strategy.
+  // If the user has valid login credentials, send them to the home page.
+  // Otherwise the user will be sent an error
+  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
+    // So we're sending the user back the route to the home page because the redirect will happen on the front end
+    // They won't get this or even be able to access this page if they aren't authed
+    res.json("/index");
+  });
+
+  // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
+  // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
+  // otherwise send back an error
+  app.post("/api/signup", function(req, res) {
+    //console.log("Got to /api/signup");
+    console.log(req.body);
+    db.User.create({
+      username: req.body.username,
+      password: req.body.password,
+      displayname: req.body.displayname
+    }).then(function() {
+      res.redirect(307, "/api/login");
+    }).catch(function(err) {
+      console.log(err);
+      res.json(err);
+      // res.status(422).json(err.errors[0].message);
+    });
+  });
+
+  // Route for logging user out
+  app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/login");
+  });
+
+  // Route for getting some data about our user to be used client side
+  app.get("/api/user_data", function(req, res) {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        username: req.user.username,
+        password: req.user.password,
+        displayname: req.user.displayname,
+        id: req.user.id
+      });
+    }
+  });
 
 
     app.get("/play/:id", function(req, res) {
@@ -30,7 +124,7 @@ module.exports = function(app) {
 
 
 
-  app.get("/", function(req, res) {
+  app.get("/index", function(req, res) {
     // var query = {};
     // if (req.query.set_id) {
     //   query.SetId = req.query.set_id;
@@ -132,7 +226,7 @@ module.exports = function(app) {
         answer: req.body.a3
 
       });
-      res.redirect("/");
+      res.redirect("/index");
       });
     });
   });
