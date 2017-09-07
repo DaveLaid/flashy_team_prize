@@ -23,12 +23,12 @@ module.exports = function(app) {
  //  	});
 
 
-  	app.get("/flashcard", function(req, res) {
-	    db.Set.findAll({
-	    }).then(function(data) {
-	      res.render("flashcard", data);
-	    });
-  	});
+  	// app.get("/flashcard", function(req, res) {
+	  //   db.Set.findAll({
+	  //   }).then(function(data) {
+	  //     res.render("flashcard", data);
+	  //   });
+  	// });
 
  //  	app.get("/flashcard/:id", function(req, res) {
 	//     db.Set.findOne({

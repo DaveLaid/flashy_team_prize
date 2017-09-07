@@ -10,59 +10,52 @@ module.exports = function(app) {
 
   // Create all our routes and set up logic within those routes where required.
 
-  app.get("/category", function(req, res) {
-console.log("in category route");
+  app.get("/category/:cat", function(req, res) {
    db.Category.findAll({
       include: [{ model: db.Set }],
-        where: req.query
-
-<<<<<<< HEAD
-    db.Category.findAll({
-      include: [{ model: db.Set }],
-        where: req.query
+        where: { cat_name: req.params.cat}
       
     }).then(function(data) {
-      var allCategories = {cats: data};
-      
+      var allSets = {catSets: data, category: req.params.cat};
+      console.log(allSets);
+
       // console.log("----------");
-      // console.log("DATA OBJECT: " + JSON.stringify(allCategories.cats));
+      // console.log("DATA OBJECT: " + JSON.stringify(allSets.catSets));
       // console.log("----------");
-      // console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
+      // console.log("CATEGORIES: " + JSON.stringify(allSets.catSets[0]));
+      console.log("----------");
+      console.log("SETS - ONE EXAMPLE: " + JSON.stringify(allSets.catSets[0].Sets[0]));
       // console.log("----------");
-      // console.log("SETS_ONE: " + JSON.stringify(allCategories.cats[0].Sets[0]));
-      // console.log("----------");
-      // console.log("SETS.TITLE: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
+      // console.log("SETS.TITLE: " + JSON.stringify(allSets.catSets[0].Sets[0].title));
       // console.log("----------");
 
-      res.render("category.handlebars", allCategories);
+      res.render('category', allSets);
     });
   });
 
 
-  // app.get("/category", function(req, res) {
-    
-=======
-   }).then(function(data) {
-      var allCategories = {cats: data};
+  app.get("/category/{{this.category}}/:sets", function(req, res) {
+    db.Set.findOne({
+      include: [{ model: db.Flashcard}],
+        where: { id: req.params.sets }
 
-
-     res.render("category.handlebars", allCategories);
+    }).then(function(data){
+    return(data);
     });
+
   });
+
+
 
   // app.get("/category", function(req, res) {
   //
->>>>>>> c191a2dacc00289807e42c62a08066598e1eb7d1
+
   //   db.User.findOne({
   //     displayname: req.params.displayname,
   //     username: req.params.username
   //   }).then(function(data) {
   //     res.render("category", data);
-<<<<<<< HEAD
 
-=======
-  //
->>>>>>> c191a2dacc00289807e42c62a08066598e1eb7d1
   //   });
   // });
 

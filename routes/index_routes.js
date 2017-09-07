@@ -1,7 +1,7 @@
 // Requiring our models
 var db = require("../models");
 
-var count = 1;
+
 
 // HOME PAGE NEEDS:
   // GET SET
@@ -33,34 +33,34 @@ module.exports = function(app) {
     }).then(function(data) {
       var allCategories = {cats: data};
 
-      // console.log("----------");
-      // console.log("DATA OBJECT: " + JSON.stringify(allCategories.cats));
-      // console.log("----------");
-      // console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
-      // console.log("----------");
-      // console.log("SETS_ONE: " + JSON.stringify(allCategories.cats[0].Sets[0]));
-      // console.log("----------");
-      // console.log("SETS.TITLE: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
-      // console.log("----------");
+      console.log("----------");
+      console.log("DATA OBJECT: " + JSON.stringify(allCategories.cats));
+      console.log("----------");
+      console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
+      console.log("----------");
+      console.log("SETS_ONE: " + JSON.stringify(allCategories.cats[0].Sets[0]));
+      console.log("----------");
+      console.log("SETS.TITLE: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
+      console.log("----------");
 
       res.render("index", allCategories);
     });
   });
 
 
+// var count = 1;
 
+//   app.post("/", function(req, res) {
+//     db.Flashcard.create({
+//       flash_num: count,
+//       question: req.body.question,
+//       answer: req.body.answer
+//     }).then(function(data){
 
-  app.post("/", function(req, res) {
-    db.Flashcard.create({
-      flash_num: count,
-      question: req.body.question,
-      answer: req.body.answer
-    }).then(function(data){
-
-      return res.json(data);
-      res.redirect("/");
-    });
-  });
+//       return res.json(data);
+//       res.redirect("/");
+//     });
+//   });
 
 
 
@@ -81,71 +81,74 @@ module.exports = function(app) {
 
 
 
-  app.get("/create", function(req, res) {
+  // app.get("/create", function(req, res) {
 
-    db.Category.findAll({
-    }).then(function(data) {
-      console.log("here in create route");
-      res.render("create.handlebars", data);
-    });
+  //   db.Category.findAll({
+  //   }).then(function(data) {
+  //     console.log("here in create route");
+  //     res.render("create.handlebars", data);
+  //   });
 
-  });
+  // });
 
-  // create flashcards data is posted here
-  app.post("/create", function(req, res) {
-    console.log("got here to post create in index.routes");
+  // // create flashcards data is posted here
+  // app.post("/create", function(req, res) {
+  //   console.log("got here to post create in index.routes");
 
-    console.log("title:"+req.body.flashcards_title);
-    console.log("category:"+req.body.category);
+  //   console.log("title:"+req.body.flashcards_title);
+  //   console.log("category:"+req.body.category);
 
-    //Flashcard 1
-    console.log(req.body.q1);
-    console.log(req.body.a1);
+  //   //Flashcard 1
+  //   console.log(req.body.q1);
+  //   console.log(req.body.a1);
 
-    //Flashcard 2
-    console.log(req.body.q2);
-    console.log(req.body.a2);
+  //   //Flashcard 2
+  //   console.log(req.body.q2);
+  //   console.log(req.body.a2);
 
-    //Flashcard 3
-    console.log(req.body.q3);
-    console.log(req.body.a3);
+  //   //Flashcard 3
+  //   console.log(req.body.q3);
+  //   console.log(req.body.a3);
 
-    db.Category.findOne({
-      where: {
-        cat_name: req.body.category
-      }
-    }
-     ).then(function(data) {
-      console.log("USER data (id): " + data.id);
-      console.log("USER data (catname): " + data.cat_name);
-      var mynewset = db.Set.create({
-        title: req.body.flashcards_title,
-         url: 'www.google.com',
-         CategoryId: data.id,
-         UserId: 1
-       }).then(function(data2) {
-         console.log("CategoryID: "+data2.id);
+  //   db.Category.findOne({
+  //     where: {
+  //       cat_name: req.body.category
+  //     }
+  //   }
+  //    ).then(function(data) {
+  //     console.log("USER data (id): " + data.id);
+  //     console.log("USER data (catname): " + data.cat_name);
+  //     var mynewset = db.Set.create({
+  //       title: req.body.flashcards_title,
+  //        url: 'www.google.com',
+  //        CategoryId: data.id,
+  //        UserId: 1
+  //      }).then(function(data2) {
+  //        console.log("CategoryID: "+data2.id);
 
-      var mynewcard1 = db.Flashcard.create({
-         flash_num: data2.id,
-         question: req.body.q1,
-         answer: req.body.a1
-      });
+  //     var mynewcard1 = db.Flashcard.create({
+  //        flash_num: data2.id,
+  //        question: req.body.q1,
+  //        answer: req.body.a1
+  //     });
 
-      var mynewcard2 = db.Flashcard.create({
-         flash_num: data2.id,
-         question: req.body.q2,
-         answer: req.body.a2
-       });
+  //     var mynewcard2 = db.Flashcard.create({
+  //        flash_num: data2.id,
+  //        question: req.body.q2,
+  //        answer: req.body.a2
+  //      });
 
-     var mynewcard3 = db.Flashcard.create({
-        flash_num: data2.id,
-        question: req.body.q3,
-        answer: req.body.a3
+  //    var mynewcard3 = db.Flashcard.create({
+  //       flash_num: data2.id,
+  //       question: req.body.q3,
+  //       answer: req.body.a3
 
-    });
-  });
-  });
+  //   });
+  // });
+  // });
+
+
+  
       //res.render("index", data);
 
     // var set_of_flashcards = [];
@@ -157,16 +160,15 @@ module.exports = function(app) {
     //   console.log("here in post route 1");
     //   res.redirect("/");
     // });
-  });
+  // });
 
 
 
-<<<<<<< HEAD
+
 
   // app.get("/user/:user_id", function(req, res) {
-=======
-  app.get("/user/user_id", function(req, res) {
->>>>>>> c191a2dacc00289807e42c62a08066598e1eb7d1
+
+
 
   //   db.User.findOne({
   //     displayname: req.params.displayname,
