@@ -180,10 +180,35 @@ module.exports = function(app) {
     });
   });
 
-  // app.get("/create", function(req, res) {
-  //     console.log("here in create route 2");
-  //     res.render("create.handlebars");
 
+  app.get("/play/:id", function(req, res) {
+
+    db.Flashcard.findAll({
+      where: {
+        flash_num: req.params.id
+      }
+
+    }).then(function(data) {
+      console.log("data", data);
+      res.render("flashcard", data);
+    });
+
+  });
+
+
+  // app.get("/flip/:id", function(req, res) {
+  //     console.log("here in flip");
+  //     res.render("index");
+  // });
+  //
+  // app.get("/previous:id", function(req, res) {
+  //     console.log("here in previous ", req.params.id);
+  //     res.render("index");
+  // });
+  //
+  // app.get("/next/:id", function(req, res) {
+  //     console.log("here in next");
+  //     res.render("index");
   // });
   // app.post("/", function(req, res) {
   //   db.Burger.create({

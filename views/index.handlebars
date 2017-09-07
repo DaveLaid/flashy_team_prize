@@ -39,11 +39,11 @@
       {{/if}}
 
       {{#each mysets}}
-      <div class="section col s12 m4 modal-trigger">
-          <a href="/category/"><div  class="card-panel teal">
+      <a href="/play/{{this.id}}" class="section col s12 m4">
+          <div class="card-panel teal">
             <span id="{{this.title}}" value="{{this.title}}" class="white-text">{{ this.title }}</span>
-          </div></a>
-      </div>
+          </div>
+      </a>
       {{/each}}
 
     </div>
@@ -85,13 +85,49 @@
   $('.modal').modal();
 
   //on click events for the modals
-  $("#modal-create-flashcards").on("click", function(event) {
-      $('#modal-create-flashcards').modal('open');
-  });
-  $("#play-flashcards").on("click", function(event) {
-      $('#play-flashcards').modal('open');
-  });
+  // $("#modal-create-flashcards").on("click", function(event) {
+  //     $('#modal-create-flashcards').modal('open');
+  // });
+  // $("#play-flashcards").on("click", function(event) {
+  //     $('#play-flashcards').modal('open');
+  // });
 
-  // $("#oneCategory").html(this.val());
+
+// basically it's an AJAX GET request that loops through each question/answer
+// one at a time.  Upon clicking it increases the counter and moves onto the next one
+
+//$(".previous").on("click", ".modal-trigger", function() {
+ //  $("#previous").on("click", function(event) {
+ //
+ // var setId = $(this).attr("id");
+ // console.log("here in click event ", setId);
+ //
+ // $.ajax({
+ //    method: "GET",
+ //    url: "/flip/" + setId
+ //  }).done(function(data) {
+ //      $('.modal-content').modal("open");
+ //
+ //     var i = 0;
+ //
+ //     $("#modal-question").html(data[i].question);
+ //      $("#modal-answer").html(data[i].answer);
+ //
+ //     $("#nextBtn").on("click", function() {
+ //        i++;
+ //        $("#modal-question").html(data[i].question);
+ //        $("#modal-answer").html(data[i].answer);
+ //      });
+ //
+ //   });
+ //
+ //
+ //   $("#modal-login").on("click", function(event) {
+ //       $('#modal-login').modal('open');
+ //    });
+ //
+ //
+ // });
+//$("#oneCategory").html(this.val());
 
 </script>
