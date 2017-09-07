@@ -9,7 +9,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     url: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: 'www.google.com',
       set: function(val){
         "www.flashy.com/flashcards/" + this.setDataValue('id', val.toLowerCase());
       },
@@ -26,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
-    
+
     //Associates a Set to the User who created it.
     Set.belongsTo(models.User, {
       foreignKey: {
@@ -42,11 +43,11 @@ module.exports = function(sequelize, DataTypes) {
   };
 
   // Set.associate = function(models) {
-    
+
   // };
 
   // Set.associate = function(models) {
-    
+
   // };
 
 

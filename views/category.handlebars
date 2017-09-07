@@ -13,11 +13,11 @@
       <div id="category-flashcards">
 
         <div class="divider"></div>
-        {{#each cats}}
+
             {{#if this.cat_name}}
                 <h5>{{ this.cat_name }} - Sets</h5>
             {{/if}}
-        {{/each}}
+
 
 
         <div class="row">
@@ -50,8 +50,15 @@
 <div id="play-flashcards" class="modal">
   <div class="modal-content">
 
-    <h5>Flashcard Title</h5>
-    <p>Author</p>
+    <div class="row modal-row">
+      <div class="col s8">
+        <h5>{{this.cat_name}}Flashcard Title</h5>
+        <p>Author</p>
+      </div>
+      <div id="share-btn" class="col s4">
+        <button class="col s12 btn" type="submit" value="share-card" name="share-card">Share Flashcards</button>
+      </div>
+    </div>
 
     <div class="row modal-row content-card">
       <!-- front / back / both sides of card appear here -->
@@ -61,11 +68,6 @@
       <div class="col s4 previous"><a href="#" value="previous-card" class="btn">PREVIOUS</a></div>
       <div class="col s4 flip"><a href="#" value="flip-card" class="btn">FLIP</a></div>
       <div class="col s4 next"><a href="#" value="next-card" class="btn">NEXT</a></div>
-    </div>
-
-    <div class="row modal-row share-card">
-      <button class="col s12 btn" type="submit" value="share-card" name="share-card">Share Flashcards</button>
-      <!-- <a href="#" value="share-card" class="waves-effect waves-light btn">Share Flashcards!</a> -->
     </div>
 
   </div> <!-- end modal content -->

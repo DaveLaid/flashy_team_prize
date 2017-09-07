@@ -31,7 +31,13 @@ module.exports = function(app) {
         where: req.query
 
     }).then(function(data) {
-      var allCategories = {cats: data};
+
+      db.Set.findAll({
+
+        where: {
+             UserId: 1
+           }}).then(function(data2) {
+      var allCategories = {cats: data, mysets : data2};
 
       // console.log("----------");
       // console.log("DATA OBJECT: " + JSON.stringify(allCategories.cats));
@@ -44,6 +50,7 @@ module.exports = function(app) {
       // console.log("----------");
 
       res.render("index", allCategories);
+    });
     });
   });
 
@@ -120,7 +127,7 @@ module.exports = function(app) {
       console.log("USER data (catname): " + data.cat_name);
       var mynewset = db.Set.create({
         title: req.body.flashcards_title,
-         url: 'www.google.com',
+
          CategoryId: data.id,
          UserId: 1
        }).then(function(data2) {
@@ -143,8 +150,9 @@ module.exports = function(app) {
         question: req.body.q3,
         answer: req.body.a3
 
+      });
+      res.redirect("/");
     });
-  });
   });
       //res.render("index", data);
 

@@ -32,14 +32,14 @@ module.exports = function(sequelize, DataTypes) {
 
 
 // force: true will drop the table if it already exists
-  // User.sync({force: true}).then(() => {
-  //   // Table created
-  //   User.create({
-  //     displayname: 'cinnamon',
-  //     username: 'cinnamon@gmail.com',
-  //     password: '123'
-  //   });
-  // });
+  User.sync({force: false}).then(() => {
+    // Table created
+    User.create({
+      displayname: 'cinnamon',
+      username: 'cinnamon@gmail.com',
+      password: '123'
+    });
+  });
 
   return User;
 };

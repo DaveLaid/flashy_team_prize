@@ -32,38 +32,22 @@
     <!-- start my_cards -->
     <div id="my_cards" class="row center">
 
+      {{#if mysets}}
       <div class="divider"></div>
       <h5>My Cards!</h5>
-
       <br>
+      {{/if}}
 
-      <div class="section col s12 m4">
-        <div href="#play-flashcards" class="modal-trigger card-panel teal">
-          <span class="white-text" name="myCards">My Set 1</span>
-        </div>
+      {{#each mysets}}
+      <div class="section col s12 m4 modal-trigger">
+          <a href="/category/"><div  class="card-panel teal">
+            <span id="{{this.title}}" value="{{this.title}}" class="white-text">{{ this.title }}</span>
+          </div></a>
       </div>
+      {{/each}}
 
     </div>
     <!-- end my_cards -->
-
-    <!-- start my_favorites -->
-    <div id="my_cards" class="row center">
-
-      <div class="divider"></div>
-      <h5>My Favorites!</h5>
-
-      <br>
-
-      <div class="section col s12 m4">
-        <div href="#play-flashcards" class="modal-trigger card-panel teal">
-          <span class="white-text" name="favorite">My Favorite 1</span>
-        </div>
-      </div>
-
-    </div>
-    <!-- end my_favorites -->
-
-
 
 
     <!-- start browse_subjects -->
@@ -76,7 +60,7 @@
 
       {{#each cats}}
       <div class="section col s12 m4">
-        <a href="/category"><div  class="card-panel teal">
+        <a href="/category/"><div  class="card-panel teal">
           <span id="{{this.cat_name}}" value="{{this.cat_name}}" class="white-text">{{ this.cat_name }}</span>
         </div></a>
       </div>
