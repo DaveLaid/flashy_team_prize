@@ -126,13 +126,14 @@ module.exports = function(app) {
      ).then(function(data) {
       console.log("USER data (id): " + data.id);
       console.log("USER data (catname): " + data.cat_name);
+
       var mynewset = db.Set.create({
         title: req.body.flashcards_title,
 
          CategoryId: data.id,
          UserId: 1
        }).then(function(data2) {
-         console.log("CategoryID: "+data2.id);
+         console.log("CategoryID: "+ data2.id);
 
       var mynewcard1 = db.Flashcard.create({
          flash_num: data2.id,
@@ -239,7 +240,8 @@ module.exports = function(app) {
   //   .then(function(data) {
   //     // return res.json(data);
   //     res.redirect("/");
-  //   });
   // });
+   });
+  
 
 };
