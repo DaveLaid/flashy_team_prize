@@ -164,7 +164,13 @@ nav {
 .share-card {
   margin-top: 30px;
 }
-
+#share-btn {
+  margin-top: .82rem;
+}
+#share-btn-f {
+  margin-top: 1rem;
+  float: right;
+}
 .divider {
   height: 1px;
   overflow: hidden;

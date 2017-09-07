@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
-    
+
     //Associates a Set to the User who created it.
     Set.belongsTo(models.User, {
       foreignKey: {
@@ -42,11 +42,11 @@ module.exports = function(sequelize, DataTypes) {
   };
 
   // Set.associate = function(models) {
-    
+
   // };
 
   // Set.associate = function(models) {
-    
+
   // };
 
 

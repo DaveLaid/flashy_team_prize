@@ -32,21 +32,24 @@
    <!-- start my_cards -->
     <div id="my_cards" class="row center">
 
-     <div class="divider"></div>
+
+      {{#if mysets}}
+      <div class="divider"></div>
       <h5>My Cards!</h5>
+      <br>
+      {{/if}}
 
-     <br>
+      {{#each mysets}}
+      <a href="/play/{{this.id}}" class="section col s12 m4">
+          <div class="card-panel teal">
+            <span id="{{this.title}}" value="{{this.title}}" class="white-text">{{ this.title }}</span>
+          </div>
+      </a>
+      {{/each}}
 
-     <div class="section col s12 m4">
-        <div href="#play-flashcards" class="modal-trigger card-panel teal">
-          <span class="white-text" name="myCards">My Set 1</span>
-        </div>
-      </div>
 
    </div>
     <!-- end my_cards -->
-
-
 
 
    <!-- start browse_subjects -->
@@ -74,9 +77,6 @@
 </div>
 
 
-
-
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/js/materialize.min.js"></script>
 <script src="/js/init.js"></script>
@@ -85,16 +85,61 @@
   //need to initialize all modals!!!
   $('.modal').modal();
 
- //on click events for the modals
-  $("#modal-create-flashcards").on("click", function(event) {
-      $('#modal-create-flashcards').modal('open');
-  });
-  $("#play-flashcards").on("click", function(event) {
-      $('#play-flashcards').modal('open');
-  });
 
- 
-    
+  //on click events for the modals
+  // $("#modal-create-flashcards").on("click", function(event) {
+  //     $('#modal-create-flashcards').modal('open');
+  // });
+  // $("#play-flashcards").on("click", function(event) {
+  //     $('#play-flashcards').modal('open');
+  // });
+
+
+// basically it's an AJAX GET request that loops through each question/answer
+// one at a time.  Upon clicking it increases the counter and moves onto the next one
+
+//$(".previous").on("click", ".modal-trigger", function() {
+ //  $("#previous").on("click", function(event) {
+ //
+ // var setId = $(this).attr("id");
+ // console.log("here in click event ", setId);
+ //
+ // $.ajax({
+ //    method: "GET",
+ //    url: "/flip/" + setId
+ //  }).done(function(data) {
+ //      $('.modal-content').modal("open");
+ //
+ //     var i = 0;
+ //
+ //     $("#modal-question").html(data[i].question);
+ //      $("#modal-answer").html(data[i].answer);
+ //
+ //     $("#nextBtn").on("click", function() {
+ //        i++;
+ //        $("#modal-question").html(data[i].question);
+ //        $("#modal-answer").html(data[i].answer);
+ //      });
+ //
+ //   });
+ //
+ //
+ //   $("#modal-login").on("click", function(event) {
+ //       $('#modal-login').modal('open');
+ //    });
+ //
+ //
+ // });
+//$("#oneCategory").html(this.val());
+
+ //on click events for the modals
+  //$("#modal-create-flashcards").on("click", function(event) {
+//      $('#modal-create-flashcards').modal('open');
+//  });
+//  $("#play-flashcards").on("click", function(event) {
+//      $('#play-flashcards').modal('open');
+//  });
+
 
 
 </script>
