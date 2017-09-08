@@ -1,23 +1,26 @@
-// Requiring our models
+// Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
 
 // Requiring path to so we can use relative routes to our HTML files
 var path = require("path");
 
-
+// Requiring our custom middleware for checking if a user is logged in
+//var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 // HOME PAGE NEEDS:
-  // GET SET
-  // GET CATEGORY
-  // GET USER
-  // links to user page, category page, set page.
+// GET SET
+// GET CATEGORY
+// GET USER
+// links to user page, category page, set page.
 
 
 // Routes =============================================================
 module.exports = function(app) {
 
-    // signup page
+  // Create all our routes and set up logic within those routes where required.
+
+  // signup page
   app.get("/", function(req, res) {
     // If the user already has an account, send them to the login page
     if (req.user) {
@@ -106,23 +109,11 @@ module.exports = function(app) {
       });
     }
   });
+  //--------------------------------------------------------------
 
-
-    // app.get("/play/:id", function(req, res) {
-
-    //   db.Flashcard.findAll({
-    //     where: {
-    //       flash_num: req.params.id
-    //     }
-
-    //   }).then(function(data) {
-    //     console.log("data", data);
-    //     res.render("flashcard.handlebars", data);
-    //   });
-
-    // });
-
-
+  // var homeFunk = function (req, res) {
+  //   res.render("index", {allCategories, allSets});
+  // }
 
   app.get("/index", function(req, res) {
     // var query = {};
@@ -130,75 +121,72 @@ module.exports = function(app) {
     //   query.SetId = req.query.set_id;
     // }
 
-
     db.Category.findAll({
-      include: [{ model: db.Set }],
-        where: req.query
+      include: [{
+        model: db.Set
+      }],
+      where: req.query
 
     }).then(function(data) {
-
-      db.Set.findAll({
-
-        where: {
-             UserId: 1
-           }}).then(function(data2) {
-      var allCategories = {cats: data, mysets : data2};
-
-      console.log("----------");
-      console.log("DATA OBJECT: " + JSON.stringify(allCategories.cats));
-      console.log("----------");
-      console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
-      console.log("----------");
-      console.log("SETS_ONE: " + JSON.stringify(allCategories.cats[0].Sets[0]));
-      console.log("----------");
-      console.log("SETS.TITLE: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
-      console.log("----------");
+      var allCategories = {
+        cats: data
+      };
+      // console.log(JSON.stringify(allCategories));
+      // console.log("CATEGORY name: " + data[0].cat_name);
+      // console.log("----------");
+      // console.log("DATA: " + JSON.stringify(data));
+      // console.log("----------");
+      // console.log("ALLCATEGORIES: " + JSON.stringify(allCategories));
+      // console.log("----------");
+      // console.log("THIS: ");
+      // console.log("----------");
+      // console.log("SETS: " + JSON.stringify(allCategories.cats));
+      // console.log("----------");
+      // console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
+      // console.log("----------");
+      // console.log("Sets.CategoryId: " + JSON.stringify(allCategories.cats[0].Sets[0]));
+      // console.log("----------");
+      // console.log("Sets.title: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
+      // console.log("----------");
 
       res.render("index", allCategories);
     });
-    });
   });
 
 
 
+  // app.get("/", function(req, res) {
+  //   db.Set.findAll({
+  //     where: {
+  //       CategoryId: 1
+  //     }
+  //     // include: [ Flashcard ]
+  //   }).then(function(data) {
+  //     var allSets = {sets: data};
+  //     console.log(JSON.stringify(allSets));
+  //     // console.log("SET title: " + data[0].title);
+  //     res.render("index", allSets);
+  //   });
+  // });
 
-  app.get("/api/:sets", function(req, res) {
-    console.log("---------------- ");
-    console.log("DID WE GET HERE? ");
-    console.log("---------------- ");
-    db.Set.findOne({
-      include: [{ model: db.Flashcard}],
-        where: { id: req.params.sets }
 
-    }).then(function(data){
-      console.log("ARE WE GETTING DATA?");
-      console.log(data.dataValues.Flashcards[0].dataValues.question);
-      res.json(data.dataValues);
-
-     
-     
-    });
-
-  });
 
 
   app.get("/create", function(req, res) {
 
-    db.Category.findAll({
-    }).then(function(data) {
+    db.Category.findAll({}).then(function(data) {
       console.log("here in create route");
       res.render("create.handlebars", data);
     });
 
   });
 
-
   // create flashcards data is posted here
   app.post("/create", function(req, res) {
     console.log("got here to post create in index.routes");
 
-    console.log("title:"+req.body.flashcards_title);
-    console.log("category:"+req.body.category);
+    console.log("title:" + req.body.flashcards_title);
+    console.log("category:" + req.body.category);
 
     //Flashcard 1
     console.log(req.body.q1);
@@ -216,40 +204,93 @@ module.exports = function(app) {
       where: {
         cat_name: req.body.category
       }
-    }
-     ).then(function(data) {
+    }).then(function(data) {
       console.log("USER data (id): " + data.id);
       console.log("USER data (catname): " + data.cat_name);
-
       var mynewset = db.Set.create({
         title: req.body.flashcards_title,
+        url: 'www.google.com',
+        CategoryId: data.id,
+        UserId: 1
+      }).then(function(data2) {
+        console.log("CategoryID: " + data2.id);
 
-         CategoryId: data.id,
-         UserId: 1
-       }).then(function(data2) {
-         console.log("CategoryID: "+ data2.id);
+        var mynewcard1 = db.Flashcard.create({
+          flash_num: data2.id,
+          question: req.body.q1,
+          answer: req.body.a1
+        });
 
-      var mynewcard1 = db.Flashcard.create({
-         flash_num: data2.id,
-         question: req.body.q1,
-         answer: req.body.a1
-      });
+        var mynewcard2 = db.Flashcard.create({
+          flash_num: data2.id,
+          question: req.body.q2,
+          answer: req.body.a2
+        });
 
-      var mynewcard2 = db.Flashcard.create({
-         flash_num: data2.id,
-         question: req.body.q2,
-         answer: req.body.a2
-       });
+        var mynewcard3 = db.Flashcard.create({
+          flash_num: data2.id,
+          question: req.body.q3,
+          answer: req.body.a3
 
-     var mynewcard3 = db.Flashcard.create({
-        flash_num: data2.id,
-        question: req.body.q3,
-        answer: req.body.a3
-
-      });
-      res.redirect("/index");
+        });
       });
     });
+    //res.render("index", data);
+
+    // var set_of_flashcards = [];
+    //     for(i=0;i<data2.length;i++) {
+    //     }
+    // db.Flashcard.create({
+    //
+    // }).then(function(data) {
+    //   console.log("here in post route 1");
+    //   res.redirect("/");
+    // });
   });
+
+
+
+
+  app.get("/:user_id", function(req, res) {
+
+    db.User.findOne({
+      displayname: req.params.displayname,
+      username: req.params.username
+    }).then(function(data) {
+      console.log("USER data: " + data);
+      res.render("index", data);
+    });
+  });
+
+  // app.get("/create", function(req, res) {
+  //     console.log("here in create route 2");
+  //     res.render("create.handlebars");
+
+  // });
+  // app.post("/", function(req, res) {
+  //   db.Burger.create({
+  //     burger_name: req.body.burger_name,
+  //     devoured: req.body.devoured
+  //   }).then(function(data){
+  //     // res.render("index", data);
+  //     res.redirect("/");
+  //     // return res.json(data);
+  //     // res.redirect("/");
+  //   });
+  // });
+
+  // app.put("/:id", function(req, res) {
+  //   db.Burger.update({
+  //     devoured: req.body.devoured
+  //   }, {
+  //     where: {
+  //       id: req.params.id
+  //     }
+  //   })
+  //   .then(function(data) {
+  //     // return res.json(data);
+  //     res.redirect("/");
+  //   });
+  // });
 
 };
