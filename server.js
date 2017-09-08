@@ -18,7 +18,7 @@ var db = require("./models");
 
 
 
-
+var mysql2 = require("mysql2");
 
 var mysql = require("mysql");
 
