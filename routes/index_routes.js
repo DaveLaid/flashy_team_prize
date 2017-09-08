@@ -50,7 +50,7 @@ module.exports = function(app) {
   //console.log("user is logged in.")
   //});
 
-  
+
 
   //-------------------------------------------------------------
   //-- api routes -----------------------------------------------
@@ -156,10 +156,11 @@ module.exports = function(app) {
     }).then(function(data){
       console.log("ARE WE GETTING DATA?");
       // console.log(data.dataValues.Flashcards[0].dataValues.question);
+
       res.json(data.dataValues);
 
-     
-     
+
+
     });
 
   });
@@ -211,10 +212,12 @@ module.exports = function(app) {
          UserId: 1,
 
 
+
       }).then(function(data2) {
          console.log("CategoryID: "+ data2.id);
 
      var mynewcard1 = db.Flashcard.create({
+
          flash_num: 1,
          question: req.body.q1,
          answer: req.body.a1,
@@ -222,6 +225,7 @@ module.exports = function(app) {
       });
 
      var mynewcard2 = db.Flashcard.create({
+
          flash_num: 2,
          question: req.body.q2,
          answer: req.body.a2,
@@ -229,6 +233,7 @@ module.exports = function(app) {
        });
 
     var mynewcard3 = db.Flashcard.create({
+
         flash_num: 3,
         question: req.body.q3,
         answer: req.body.a3,
