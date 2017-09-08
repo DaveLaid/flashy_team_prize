@@ -144,15 +144,15 @@ module.exports = function(app) {
            }}).then(function(data2) {
       var allCategories = {cats: data, mysets : data2};
 
-      console.log("----------");
-      console.log("DATA OBJECT: " + JSON.stringify(allCategories.cats));
-      console.log("----------");
-      console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
-      console.log("----------");
-      console.log("SETS_ONE: " + JSON.stringify(allCategories.cats[0].Sets[0]));
-      console.log("----------");
-      console.log("SETS.TITLE: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
-      console.log("----------");
+      // console.log("----------");
+      // console.log("DATA OBJECT: " + JSON.stringify(allCategories.cats));
+      // console.log("----------");
+      // console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
+      // console.log("----------");
+      // console.log("SETS_ONE: " + JSON.stringify(allCategories.cats[0].Sets[0]));
+      // console.log("----------");
+      // console.log("SETS.TITLE: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
+      // console.log("----------");
 
       res.render("index", allCategories);
     });
@@ -172,7 +172,7 @@ module.exports = function(app) {
 
     }).then(function(data){
       console.log("ARE WE GETTING DATA?");
-      console.log(data.dataValues.Flashcards[0].dataValues.question);
+      // console.log(data.dataValues.Flashcards[0].dataValues.question);
       res.json(data.dataValues);
 
      
