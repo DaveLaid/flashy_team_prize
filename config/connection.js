@@ -12,7 +12,7 @@ else {
   password: "",
   database: "flashcards_db"
   });
-}
+};
 
 
 connection.connect(function(err) {
