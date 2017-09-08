@@ -34,13 +34,20 @@ module.exports = function(app) {
   });
 
 
-  app.get("/category/{{this.category}}/:sets", function(req, res) {
+  app.get("/category/:category/:sets", function(req, res) {
+    console.log("---------------- ");
+    console.log("DID WE GET HERE? ");
+    console.log("---------------- ");
     db.Set.findOne({
       include: [{ model: db.Flashcard}],
         where: { id: req.params.sets }
 
     }).then(function(data){
-    return(data);
+      console.log("ARE WE GETTING DATA?");
+      console.log(data.dataValues.Flashcards[0].dataValues.question);
+      res.json(data.dataValues);
+     
+     
     });
 
   });

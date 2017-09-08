@@ -34,7 +34,7 @@
             </div>
 
           <!-- Modal Flashcard Deck Structure -->
-          <div class="modal">
+          <div id="modal1" class="modal">
             <div id="{{this.id}}" class="modal-content">
 
              <h5>Flashcard Title</h5>
@@ -47,13 +47,13 @@
               </div>
 
              <div class="row modal-row controls-card">
-                <div class="col s4 previous"><a href="#" value="previous-card" class="btn">PREVIOUS</a></div>
-                <div class="col s4 flip"><a href="#" value="flip-card" class="btn">FLIP</a></div>
+                <div id="prevBtn" class="col s4 previous"><a href="#" value="previous-card" class="btn">PREVIOUS</a></div>
+                <div id="flipBtn" class="col s4 flip"><a href="#" value="flip-card" class="btn">FLIP</a></div>
                 <div id="nextBtn" class="col s4 next"><a href="#" value="next-card" class="btn">NEXT</a></div>
               </div>
 
              <div class="row modal-row share-card">
-                <button class="col s12 btn" type="submit" value="share-card" name="share-card">Share Flashcards</button>
+                <button id="shareBtn" class="col s12 btn" type="submit" value="share-card" name="share-card">Share Flashcards</button>
                 <!-- <a href="#" value="share-card" class="waves-effect waves-light btn">Share Flashcards!</a> -->
               </div>
 
@@ -95,18 +95,34 @@ $(document).on("click", ".modal-trigger", function() {
     method: "GET",
     url: "/category/{{this.category}}/" + setId
   }).done(function(data) {
-      $(".modal-content").modal('open');
+    console.log("DATA AFTER GET: ");
+      $("#modal1").modal('open');
+      // var allCards = {flashMe: data};
+      console.log("WHAT'S UP: " + data.Flashcards[0].question);
 
       var i = 0;
+      // var flashCard = allCards;
+      // console.log("FLASHCARD VARIABLE" + flashCard);
 
-      $("#modal-question").html(data[i].question);
-      $("#modal-answer").html(data[i].answer);
+      $("#modal-question").html("<h2 style='text-align:center; color: #08bff7' >" + data.Flashcards[i].question + "</h2>");
+      $("#modal-answer").html( "<h2 style='text-align:center; color: #08bff7' >" + data.Flashcards[i].answer + "</h2>").hide();
 
       $("#nextBtn").on("click", function() {
         i++;
-        $("#modal-question").html(data[i].question);
-        $("#modal-answer").html(data[i].answer);
+        $("#modal-question").html("<h2 style='text-align:center; color: #08bff7'>" + data.Flashcards[i].question + "</h2>");
+        $("#modal-answer").html("<h2 style='text-align:center; color: #08bff7'>" + data.Flashcards[i].answer + "</h2>").hide();
       });
+
+      $("#prevBtn").on("click", function() {
+        i--;
+        $("#modal-question").html("<h2 style='text-align:center; color: #08bff7'>" + data.Flashcards[i].question + "</h2>");
+        $("#modal-answer").html("<h2 style='text-align:center; color: #08bff7'>" + data.Flashcards[i].answer + "</h2>").hide();
+      });
+
+      $("#flipBtn").on("click", function() {
+        $("#modal-answer").html("<h2 style='text-align:center; color: #08bff7'>" + data.Flashcards[i].answer + "</h2>").show();
+      });
+
 
     });
 
