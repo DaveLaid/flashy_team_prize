@@ -50,7 +50,7 @@ module.exports = function(app) {
   //console.log("user is logged in.")
   //});
 
-  
+
 
   //-------------------------------------------------------------
   //-- api routes -----------------------------------------------
@@ -144,15 +144,15 @@ module.exports = function(app) {
            }}).then(function(data2) {
       var allCategories = {cats: data, mysets : data2};
 
-      console.log("----------");
-      console.log("DATA OBJECT: " + JSON.stringify(allCategories.cats));
-      console.log("----------");
-      console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
-      console.log("----------");
-      console.log("SETS_ONE: " + JSON.stringify(allCategories.cats[0].Sets[0]));
-      console.log("----------");
-      console.log("SETS.TITLE: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
-      console.log("----------");
+      // console.log("----------");
+      // console.log("DATA OBJECT: " + JSON.stringify(allCategories.cats));
+      // console.log("----------");
+      // console.log("CATEGORIES: " + JSON.stringify(allCategories.cats[0]));
+      // console.log("----------");
+      // console.log("SETS_ONE: " + JSON.stringify(allCategories.cats[0].Sets[0]));
+      // console.log("----------");
+      // console.log("SETS.TITLE: " + JSON.stringify(allCategories.cats[0].Sets[0].title));
+      // console.log("----------");
 
       res.render("index", allCategories);
     });
@@ -172,11 +172,11 @@ module.exports = function(app) {
 
     }).then(function(data){
       console.log("ARE WE GETTING DATA?");
-      console.log(data.dataValues.Flashcards[0].dataValues.question);
+      //console.log(data.dataValues.Flashcards[0].dataValues.question);
       res.json(data.dataValues);
 
-     
-     
+
+
     });
 
   });
@@ -223,28 +223,33 @@ module.exports = function(app) {
 
       var mynewset = db.Set.create({
         title: req.body.flashcards_title,
-
+        url: 'www.google.com',
          CategoryId: data.id,
-         UserId: 1
+         UserId: 1,
+
+
        }).then(function(data2) {
          console.log("CategoryID: "+ data2.id);
 
       var mynewcard1 = db.Flashcard.create({
-         flash_num: data2.id,
+         flash_num: 1,
          question: req.body.q1,
-         answer: req.body.a1
+         answer: req.body.a1,
+         SetId: data2.id
       });
 
       var mynewcard2 = db.Flashcard.create({
-         flash_num: data2.id,
+         flash_num: 2,
          question: req.body.q2,
-         answer: req.body.a2
+         answer: req.body.a2,
+         SetId: data2.id
        });
 
      var mynewcard3 = db.Flashcard.create({
-        flash_num: data2.id,
+        flash_num: 3,
         question: req.body.q3,
-        answer: req.body.a3
+        answer: req.body.a3,
+        SetId: data2.id
 
       });
       res.redirect("/index");
