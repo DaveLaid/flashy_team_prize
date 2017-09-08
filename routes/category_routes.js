@@ -23,8 +23,8 @@ module.exports = function(app) {
       // console.log("DATA OBJECT: " + JSON.stringify(allSets.catSets));
       // console.log("----------");
       // console.log("CATEGORIES: " + JSON.stringify(allSets.catSets[0]));
-      console.log("----------");
-      console.log("SETS - ONE EXAMPLE: " + JSON.stringify(allSets.catSets[0].Sets[0]));
+      // console.log("----------");
+      // console.log("SETS - ONE EXAMPLE: " + JSON.stringify(allSets.catSets[0].Sets[0]));
       // console.log("----------");
       // console.log("SETS.TITLE: " + JSON.stringify(allSets.catSets[0].Sets[0].title));
       // console.log("----------");
@@ -45,7 +45,7 @@ module.exports = function(app) {
     }).then(function(data){
       console.log("ARE WE GETTING DATA?");
       // console.log(data.dataValues.Flashcards[0].dataValues.question);
-      res.json(data);
+      res.json(data.dataValues);
      
      
     });
@@ -53,18 +53,6 @@ module.exports = function(app) {
   });
 
 
-
-  // app.get("/category", function(req, res) {
-  //
-
-  //   db.User.findOne({
-  //     displayname: req.params.displayname,
-  //     username: req.params.username
-  //   }).then(function(data) {
-  //     res.render("category", data);
-
-  //   });
-  // });
 
 
 };
