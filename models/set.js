@@ -9,13 +9,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     url: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: true
       // set: function(val){
       //   "www.flashy.com/flashcards/" + this.setDataValue('id', val.toLowerCase());
       // },
-      validate: {
-        len: [1, 255]
-      }
+      
     }
   });
 

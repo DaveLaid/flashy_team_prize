@@ -2,9 +2,9 @@
 var db = require("../models");
 
 // CATEGORY PAGE NEEDS:
-	// GET SET
-	// GET CATEGORY
-	// GET USER
+  // GET SET
+  // GET CATEGORY
+  // GET USER
 
 module.exports = function(app) {
 
@@ -44,8 +44,8 @@ module.exports = function(app) {
 
     }).then(function(data){
       console.log("ARE WE GETTING DATA?");
-      console.log(data.dataValues.Flashcards[0].dataValues.question);
-      res.json(data.dataValues);
+      // console.log(data.dataValues.Flashcards[0].dataValues.question);
+      res.json(data);
      
      
     });
