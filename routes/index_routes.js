@@ -180,22 +180,22 @@ module.exports = function(app) {
   app.post("/create", function(req, res) {
     console.log("got here to post create in index.routes");
 
-    console.log("title:"+req.body.flashcards_title);
+   console.log("title:"+req.body.flashcards_title);
     console.log("category:"+req.body.category);
 
-    //Flashcard 1
+   //Flashcard 1
     console.log(req.body.q1);
     console.log(req.body.a1);
 
-    //Flashcard 2
+   //Flashcard 2
     console.log(req.body.q2);
     console.log(req.body.a2);
 
-    //Flashcard 3
+   //Flashcard 3
     console.log(req.body.q3);
     console.log(req.body.a3);
 
-    db.Category.findOne({
+   db.Category.findOne({
       where: {
         cat_name: req.body.category
       }
@@ -204,35 +204,43 @@ module.exports = function(app) {
       console.log("USER data (id): " + data.id);
       console.log("USER data (catname): " + data.cat_name);
 
-      var mynewset = db.Set.create({
+     var mynewset = db.Set.create({
         title: req.body.flashcards_title,
-
+        url: 'www.google.com',
          CategoryId: data.id,
-         UserId: 1
-       }).then(function(data2) {
+         UserId: 1,
+
+
+      }).then(function(data2) {
          console.log("CategoryID: "+ data2.id);
 
-      var mynewcard1 = db.Flashcard.create({
-         flash_num: data2.id,
+     var mynewcard1 = db.Flashcard.create({
+         flash_num: 1,
          question: req.body.q1,
-         answer: req.body.a1
+         answer: req.body.a1,
+         SetId: data2.id
       });
 
-      var mynewcard2 = db.Flashcard.create({
-         flash_num: data2.id,
+     var mynewcard2 = db.Flashcard.create({
+         flash_num: 2,
          question: req.body.q2,
-         answer: req.body.a2
+         answer: req.body.a2,
+         SetId: data2.id
        });
 
-     var mynewcard3 = db.Flashcard.create({
-        flash_num: data2.id,
+    var mynewcard3 = db.Flashcard.create({
+        flash_num: 3,
         question: req.body.q3,
-        answer: req.body.a3
+        answer: req.body.a3,
+        SetId: data2.id
 
-      });
+     });
       res.redirect("/index");
       });
     });
   });
+
+
+  
 
 };
