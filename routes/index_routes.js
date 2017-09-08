@@ -108,28 +108,11 @@ module.exports = function(app) {
   });
 
 
-    // app.get("/play/:id", function(req, res) {
-
-    //   db.Flashcard.findAll({
-    //     where: {
-    //       flash_num: req.params.id
-    //     }
-
-    //   }).then(function(data) {
-    //     console.log("data", data);
-    //     res.render("flashcard.handlebars", data);
-    //   });
-
-    // });
 
 
 
   app.get("/index", function(req, res) {
-    // var query = {};
-    // if (req.query.set_id) {
-    //   query.SetId = req.query.set_id;
-    // }
-
+    
 
     db.Category.findAll({
       include: [{ model: db.Set }],
