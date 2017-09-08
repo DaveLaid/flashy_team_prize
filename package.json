@@ -1,7 +1,10 @@
 {
   "name": "flashy_team_prize",
   "version": "1.0.0",
-  "description": "",
+  "engines": {
+    "npm": "2.1.x"
+  },
+  "description": "flashy",
   "main": "server.js",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
