@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "root",
+    "username": "tkropp",
     "password": null,
-    "database": "flashcards_db",
+    "database": "flashcards1_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
