@@ -2,10 +2,12 @@
 var db = require("../models");
 var passport = require("../config/passport");
 
+
 // Requiring path to so we can use relative routes to our HTML files
 var path = require("path");
 
-
+// Requiring our custom middleware for checking if a user is logged in
+//var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 // HOME PAGE NEEDS:
   // GET SET
@@ -17,36 +19,31 @@ var path = require("path");
 // Routes =============================================================
 module.exports = function(app) {
 
-    // signup page
+  // Flashy home page
   app.get("/", function(req, res) {
-    // If the user already has an account, send them to the login page
-    if (req.user) {
+    
       res.redirect("/index");
-    }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+
   });
 
+  // Signup page
   app.get("/signup", function(req, res) {
-    // If the user already has an account, send them to the login page
-    if (req.user) {
-      res.redirect("/index");
-    }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+   
+      res.sendFile(path.join(__dirname, "../public/signup.html"));
+ 
   });
 
-  // login page
+  // Login page
   app.get("/login", function(req, res) {
-    // If the user already has an account send them to the home page
-    if (req.user) {
-      res.redirect("/index");
-    }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+   
+      res.sendFile(path.join(__dirname, "../public/login.html"));
+
   });
 
   // Here we've add our isAuthenticated middleware to this route.
-  // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  //app.get("/index", isAuthenticated, function(req, res) {
-  //res.redirect("/index");
+  // If a user who is not logged in tries to access this route they will be redirected to the Flashy home page
+  //app.get("/api/login", isAuthenticated, function(req, res) {
+  //res.json("/create");
   //console.log("user is logged in.")
   //});
 
@@ -56,13 +53,13 @@ module.exports = function(app) {
   //-- api routes -----------------------------------------------
 
   // Using the passport.authenticate middleware with our local strategy.
-  // If the user has valid login credentials, send them to the home page.
+  // If the user has valid login credentials, send them to the Create Flashcards page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the home page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
-    res.json("/index");
+    res.json("/create");
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -76,18 +73,23 @@ module.exports = function(app) {
       password: req.body.password,
       displayname: req.body.displayname
     }).then(function() {
-      res.redirect(307, "/api/login");
+      res.json("/create");
+      //res.redirect(307, "/create");
     }).catch(function(err) {
-      console.log(err);
-      res.json(err);
-      // res.status(422).json(err.errors[0].message);
+      console.log(" ");
+      console.log("Signup error due to duplicate entry: " + err);
+      console.log(" ");
+      res.send("Error_duplicate_entry_Use_back_browser_arrow_to_return_to_Login_page");
+      //res.send("/signup");
+      //res.json(err);
+      //res.status(422).json(err.errors[0].message);
     });
   });
 
   // Route for logging user out
   app.get("/logout", function(req, res) {
     req.logout();
-    res.redirect("/login");
+    res.redirect("/index");
   });
 
   // Route for getting some data about our user to be used client side

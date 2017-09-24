@@ -13,7 +13,9 @@ $(document).ready(function() {
     };
 
     if (!userData.username || !userData.password) {
-      return;
+      $("#alert .msg").text("All fields cannot be left empty. Please try again.");
+      $("#alert").fadeIn(500);
+      return; 
     }
 
     // If we have an email and password we run the loginUser function and clear the form
@@ -22,7 +24,7 @@ $(document).ready(function() {
     passwordInput.val("");
   });
 
-  // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
+  // loginUser does a post to our "api/login" route and if successful, redirects us to the Create Flashcards page
   function loginUser(username, password) {
     $.post("/api/login", {
       username: username,
@@ -31,8 +33,11 @@ $(document).ready(function() {
       window.location.replace(data);
       // If there's an error, log the error
     }).catch(function(err) {
-      console.log(err);
+      console.log("Login error: " + err);
+      $("#alert .msg").text("Incorrect username and/or password. Please try again.");
+      $("#alert").fadeIn(500);
     });
   }
-  
+
 });
+

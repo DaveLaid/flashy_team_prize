@@ -17,6 +17,8 @@ $(document).ready(function() {
     console.log("displayname: " + userData.displayname);
 
     if (!userData.username || !userData.password || !userData.displayname) {
+      $("#alert .msg").text("All fields cannot be left empty. Please try again.");
+      $("#alert").fadeIn(500);
       return;
     }
     // If we have an email, password, and displayname, run the signUpUser function
@@ -26,7 +28,7 @@ $(document).ready(function() {
     displaynameInput.val("");
   });
 
-  // Does a post to the signup route. If successful, we are redirected to the members page
+  // Does a post to the signup route. If successful, we are redirected to the Create Flashcards page
   // Otherwise we log any errors
   function signUpUser(username, password, displayname) {
     $.post("/api/signup", {
@@ -36,11 +38,12 @@ $(document).ready(function() {
     }).then(function(data) {
       window.location.replace(data);
       // If there's an error, handle it by throwing up a boostrap alert
-    }).catch(handleLoginErr);
+    }).catch(function(err) {
+      console.log("Signup error: " + err);
+      $("#alert .msg").text("Incorrect input. Please try again.");
+      $("#alert").fadeIn(500);
+    });
   }
 
-  function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
-    $("#alert").fadeIn(500);
-  }
 });
+  
